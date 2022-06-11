@@ -1,0 +1,252 @@
+/* Fonts */
+
+@font-face {
+    font-family: "stencil";
+    src: url("/fonts/StardosStencil-Bold.ttf") format("ttf"),
+        url("/fonts/StardosStencil-Regular.ttf") format("ttf");
+}
+
+
+/* Variabelen */
+
+:root {
+    --fruit-automaat-kleur: #FECA3F;
+    --achtergrond-kleur: black
+}
+
+/* Standaard styling */
+
+body {
+    margin: 0;
+
+    font-family: stencil;
+
+    background-color: var(--achtergrond-kleur);
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+ul li {
+    list-style-type: none;
+}
+
+
+
+
+/* Fruitautomaat */
+
+.fruitautomaat-container {
+    height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fruitautomaat-container>ul {
+    background-color: var(--fruit-automaat-kleur);
+
+    height: 20em;
+    width: 40em;
+
+    padding: 3em 5em;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-radius: 0.5em;
+}
+
+.fruitautomaat-container>ul ul {
+    background-color: white;
+
+    height: 100%;
+
+    border-radius: 0.5em;
+
+    overflow-y: hidden;
+}
+
+.fruitautomaat-container>ul ul li {
+    background-color: lightgoldenrodyellow;
+
+    padding: 0 5em;
+
+    height: 50%;
+
+    transform: translateY(-50%);
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+/* Fruitmachine slot 1 */
+.fruitautomaat-container>ul ul:nth-child(1) li {
+    animation-name: scrollen1;
+    animation-timing-function: ease-out;
+    animation-delay: 9s;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+}
+
+/* Fruitmachine slot 2 */
+.fruitautomaat-container>ul ul:nth-child(2) li {
+    animation-name: scrollen2, scrollen4;
+    animation-delay: 0s, 9s;
+    animation-timing-function: ease-out;
+    animation-duration: 9s, 1.25s;
+    animation-fill-mode: none, forwards;
+    animation-iteration-count: 1;
+}
+
+/* Fruitmachine slot 3 */
+.fruitautomaat-container>ul ul:nth-child(3) li {
+    animation-name: scrollen3, scrollen4;
+    animation-delay: 0s, 9s;
+    animation-timing-function: ease-out;
+    animation-duration: 1s;
+    animation-fill-mode: none, forwards;
+    animation-iteration-count: 9, 1;
+}
+
+.fruitautomaat-container>ul ul li span {
+    margin: auto 0;
+    padding: 0;
+
+    font-size: 80px;
+}
+
+
+.fruitautomaat-container>ul ul li:nth-child(odd) {
+    background-color: lightyellow;
+}
+
+
+
+/* Animaties */
+@keyframes scrollen1 {
+    0% {
+        transform: translateY(0);
+    }
+
+    90% {
+        transform: translateY(-175%);
+    }
+
+    100% {
+        transform: translateY(-150%);
+    }
+}
+
+@keyframes scrollen2 {
+    0% {
+        transform: translateY(0);
+    }
+
+    7% {
+        transform: translateY(-175%);
+    }
+
+    11% {
+        transform: translateY(-150%);
+    }
+
+    19% {
+        transform: translateY(-275%);
+    }
+
+    22% {
+        transform: translateY(-250%);
+    }
+
+    30% {
+        transform: translateY(-375%);
+    }
+
+    33% {
+        transform: translateY(-350%);
+    }
+
+    41% {
+        transform: translateY(-475%);
+    }
+
+    44% {
+        transform: translateY(-450%);
+    }
+
+    52% {
+        transform: translateY(-575%);
+    }
+
+    55% {
+        transform: translateY(-550%);
+    }
+
+    63% {
+        transform: translateY(-675%);
+    }
+
+    66% {
+        transform: translateY(-650%);
+    }
+
+    74% {
+        transform: translateY(-775%);
+    }
+
+    77% {
+        transform: translateY(-750%);
+    }
+
+    85% {
+        transform: translateY(-875%);
+    }
+
+    88% {
+        transform: translateY(-850%);
+    }
+
+    97% {
+        transform: translateY(-975%);
+    }
+
+    100% {
+        transform: translateY(-950%);
+    }
+}
+
+@keyframes scrollen3 {
+    0% {
+        transform: translateY(0);
+    }
+
+    90% {
+        transform: translateY(-975%);
+    }
+
+    100% {
+        transform: translateY(-950%);
+    }
+}
+
+@keyframes scrollen4 {
+    0% {
+        transform: translateY(0);
+    }
+
+    90% {
+        transform: translateY(-75%);
+    }
+
+    100% {
+        transform: translateY(-50%);
+    }
+}
