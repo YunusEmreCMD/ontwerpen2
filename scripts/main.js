@@ -129,7 +129,7 @@ for (i = 0; i < puntenKaart.length; ++i) {
     puntenKaart[i].style.color = "red";
   } else if (vorm === joker) {
     console.log("Jokeerr");
-    puntenKaart[i].style.color = "orange";
+    puntenKaart[i].style.color = "white";
     document.body.classList.add("test");
     oneensKnop.innerHTML = "<img src='/images/joker-hat-white.svg'>";
     eensKnop.innerHTML = "Doorgaan";
@@ -155,6 +155,29 @@ for (i = 0; i < kaartVorm.length; ++i) {
   kaartVorm[i].src = vorm;
 }
 
+
+
+// Random rotatie voor de kaart
+var negatieveRotatie = -2;
+var positieveRotatie = 2;
+
+function randomRotatieFunc() {
+
+  var randomRotatie = Math.random() * (positieveRotatie - negatieveRotatie) + negatieveRotatie;
+  console.log("Random rotatie " + randomRotatie);
+
+  document.body.style.cssText = "--random-deg: " + randomRotatie + "deg";
+}
+
+
+// Kaarten ontvangen
+function kaartOntvangen() {
+  document.body.classList.remove("ontvangen");
+
+  setTimeout(() => {
+    document.body.classList.add("ontvangen");
+  }, 100);
+}
 
 
 console.log(willekeurigeKaart, willekeurigeStellingen[willekeurigeKaart].stelling, willekeurigeStellingen[willekeurigeKaart].punten, willekeurigeStellingen[willekeurigeKaart].mening);
@@ -221,6 +244,16 @@ function eensKnopFunc() {
       oneensKnop.disabled = false;
     }
   }
+
+
+
+  kaartOntvangen();
+  randomRotatie = Math.random() * (positieveRotatie - negatieveRotatie) + negatieveRotatie;
+
+  randomRotatieFunc();
+  console.log(randomRotatie);
+
+
 
   // Alle vormen ophalen
   for (i = 0; i < kaartVorm.length; ++i) {
@@ -296,6 +329,16 @@ function oneensKnopFunc() {
     }
   }
 
+
+
+  kaartOntvangen();
+  randomRotatie = Math.random() * (positieveRotatie - negatieveRotatie) + negatieveRotatie;
+
+  randomRotatieFunc();
+  console.log(randomRotatie);
+
+
+
   // Haal alle vormen op
   for (i = 0; i < kaartVorm.length; ++i) {
     kaartVorm[i].src = vorm;
@@ -336,9 +379,78 @@ function checkPunten() {
   }
 }
 
+
+
+/* -------------------------- 
+-------- TIJD ----------
+-----------------------------*/
+
+
+// setInterval(time, 1000);
+
+function updateClock() {
+  var tijdTekst = document.querySelector(".tijd span");
+
+  var dag = new Date();
+  var time = dag.getHours() + ":" + (dag.getMinutes() < 10 ? '0' : '') + dag.getMinutes();
+
+  tijdTekst.innerHTML = time;
+  console.log(time);
+}
+setInterval(updateClock, 1000);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* -------------------------- 
 --------- SLEPEN ------------
 -----------------------------*/
+
+// Er wordt niet gesleept
+var slepen = false;
+
+// De container van de sleep-items
+const kaartenContainer = document.querySelector(".kaarten-container");
+// var kaart = document.querySelector(".kaarten-container ul li ul li");
+
+// for (i = 0; i < kaart.length; ++i) {
+//   console.log(kaart[i]);
+// }
+
+
+
+const stack1 = document.querySelector(".kaarten-container ul li:nth-child(1) ul");
+const stack2 = document.querySelector(".kaarten-container ul li:nth-child(2) ul");
+const stack3 = document.querySelector(".kaarten-container ul li:nth-child(3) ul");
+
+new Sortable(stack1, {
+  group: 'shared', // set both lists to same group
+  animation: 150
+});
+
+new Sortable(stack2, {
+  group: 'shared',
+  animation: 150,
+});
+
+new Sortable(stack3, {
+  group: 'shared',
+  animation: 150
+});
+
+
+
+
 
 
 

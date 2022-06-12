@@ -24,6 +24,10 @@
 
     --oneens-knop-kleur: #FF9798;
     --eens-knop-kleur: #95D264;
+
+    --kaarten-achtergrond: #242947;
+
+    --random-deg: 1deg;
 }
 
 
@@ -360,7 +364,7 @@ p {
 
     position: relative;
 
-    background-color: #242947;
+    background-color: var(--kaarten-achtergrond);
 
     font-family: raleway;
 }
@@ -389,9 +393,19 @@ p {
         inset #1b1f377e -2px -2px 10px 2px;
 }
 
+
+
+/* .kaarten-container ul li:nth-child(1) ul {
+    background-color: red;
+} */
+
+
+
 .kaarten-container ul li ul {
     height: 100%;
     width: 100%;
+
+    position: relative;
 }
 
 .kaarten-container ul li ul li {
@@ -406,14 +420,26 @@ p {
 
     display: flex;
 
-    position: relative;
+    position: absolute;
     border-radius: 0.5em;
 
     text-align: center;
 
     /* box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; */
+
+    transform: translateY(-60em);
 }
 
+.ontvangen .kaarten-container ul li ul li {
+    animation-name: kaart-ontvangen;
+    animation-fill-mode: forwards;
+    animation-duration: 2s;
+}
+
+
+.gewonnen .kaarten-container ul li ul li {
+    animation-name: none;
+}
 
 
 /* .kaarten-container ul li ul li:after {
@@ -640,15 +666,16 @@ p {
 -------- AFGELOPEN ----------
 -----------------------------*/
 
-.afgelopen-overlay,
-.afgelopen-overlay-2,
-.afgelopen-overlay section,
-.afgelopen-overlay-2 section {
+/* Algeme stijling voor beide */
+main section:nth-child(2),
+main section:nth-child(2) section,
+main section:nth-child(3),
+main section:nth-child(3) section {
     display: none;
 }
 
-
-.afgelopen-overlay {
+main section:nth-child(2),
+main section:nth-child(3) {
     /* background-color: rgba(255, 255, 255, 0.25); */
     background-color: rgba(0, 0, 0, 0.6);
     height: 100vh;
@@ -657,10 +684,11 @@ p {
     z-index: 40;
 
     animation-name: afgelopen;
-    animation-duration: 2s;
+    animation-duration: 1.5s;
 }
 
-.afgelopen-overlay section {
+main section:nth-child(2) section,
+main section:nth-child(3) section {
     background-color: white;
     height: 50%;
     width: 50%;
@@ -676,64 +704,144 @@ p {
     opacity: 0;
 
     animation-name: afgelopen;
-    animation-duration: 1s;
+    animation-duration: 2s;
     animation-delay: 1.5s;
     animation-fill-mode: forwards;
 }
 
+main section:nth-child(2) section p,
+main section:nth-child(3) section p {
+    text-align: center;
 
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 2em;
 
-.afgelopen-overlay-2 {
-    /* background-color: rgba(255, 255, 255, 0.25); */
-    background-color: rgba(0, 0, 0, 0.6);
-    height: 100vh;
-    width: 100vw;
-    position: absolute;
-    z-index: 40;
-
-    animation-name: afgelopen;
-    animation-duration: 2s;
+    font-size: 32px;
+    font-weight: 600;
+    text-transform: uppercase;
 }
 
-.afgelopen-overlay-2 section {
-    background-color: white;
-    height: 50%;
-    width: 50%;
+main section:nth-child(2) section a,
+main section:nth-child(3) section a {
+
+    position: absolute;
+    bottom: calc(4em - 2.25em);
+    left: 0;
+    right: 0;
+
+    text-align: center;
+    text-decoration: none;
+
+    width: 40%;
+    margin: 0 auto;
+    padding: 1.25em 0;
+
+    background-color: orange;
+    box-shadow: 0 0 1em orange;
+    color: white;
+    cursor: pointer;
+
+    font-size: 22px;
+    border: none;
+    outline: none;
+    border-radius: 0.5em;
+}
+
+main section:nth-child(2) section span,
+main section:nth-child(3) section span {
+    color: orange;
+}
+
+main section:nth-child(2) section span,
+main section:nth-child(3) section span {
+    color: orange;
+}
+
+main section:nth-child(2) section p:nth-child(3),
+main section:nth-child(3) section p:nth-child(3) {
+    font-size: 20px;
+    text-transform: unset;
+
+    opacity: 0.25;
+}
+
+/* afgelopen */
+.gewonnen main section:nth-child(2),
+.gewonnen main section:nth-child(2) section,
+.vergokt main section:nth-child(3),
+.vergokt main section:nth-child(3) section {
+    display: block;
+}
+
+
+
+/* Stijling voor gewonnen */
+main section:nth-child(2) section:before {
+    content: url("/images/confetti-7.gif");
     position: absolute;
 
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) scale(2.3);
 
-    border-radius: 0.5em;
-    box-shadow: 0 0 50px 15px rgba(0, 0, 0, 0.5);
+    transform-origin: center center;
 
-    opacity: 0;
+    opacity: 0.75;
+}
 
-    animation-name: afgelopen;
-    animation-duration: 1s;
-    animation-delay: 1.5s;
-    animation-fill-mode: forwards;
+main section:nth-child(2) section span:nth-child(2) {
+    margin-left: 1em;
+}
+
+main section:nth-child(2) section span:nth-child(2):before {
+    content: url("/images/chips.svg");
+
+    width: 0.75em;
+    margin-top: 0.09em;
+    margin-left: -1em;
+    /* left: 2em; */
+
+    position: absolute;
 }
 
 
 
-.gewonnen .afgelopen-overlay,
-.gewonnen .afgelopen-overlay section {
-    display: block;
+/* Stijling voor vergokt */
+
+main section:nth-child(3) section a {
+
+    filter: grayscale(100%);
+    opacity: 0.75;
+
+    pointer-events: none;
 }
 
-.vergokt .afgelopen-overlay-2,
-.vergokt .afgelopen-overlay-2 section {
-    display: block;
+
+
+/* -------------------------- 
+------------ TIJD -----------
+-----------------------------*/
+
+body div {
+    position: absolute;
+    bottom: 1.5em;
+    right: 2.75em;
+
+    font-family: Raleway;
+    font-size: 26px;
+    font-weight: 600;
+    color: white;
+
+    text-shadow: 0 0 1em white;
+
+    z-index: 90;
 }
 
-
-
-
-
-
-
+body div:first-of-type {
+    bottom: 1.5em;
+    left: 2.75em;
+}
 
 /* -------------------------- 
 --------- ANIMATIES ---------
@@ -754,6 +862,16 @@ p {
 
     100% {
         transform: translateY(-650%);
+    }
+}
+
+@keyframes kaart-ontvangen {
+    0% {
+        transform: translateY(-60em) rotate(0);
+    }
+
+    100% {
+        transform: translateY(0) rotate(var(--random-deg));
     }
 }
 
