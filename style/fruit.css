@@ -399,8 +399,6 @@ p {
     background-color: red;
 } */
 
-
-
 .kaarten-container ul li ul {
     height: 100%;
     width: 100%;
@@ -435,6 +433,27 @@ p {
     animation-fill-mode: forwards;
     animation-duration: 2s;
 }
+
+
+
+/* FRUIT2 UITPROBEREN */
+.fruit2 .kaarten-container ul li ul li {
+    animation-name: none;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 12px;
+}
+
+.fruit2 .kaarten-container ul li ul li:nth-child(1) {
+    transform: rotate(-0.5deg) !important;
+}
+
+.fruit2 .kaarten-container ul li ul li:nth-child(2) {
+    transform: rotate(4deg) !important;
+}
+
+.fruit2 .kaarten-container ul li ul li:nth-child(3) {
+    transform: rotate(2deg) !important;
+}
+
 
 
 .gewonnen .kaarten-container ul li ul li {
@@ -820,7 +839,7 @@ main section:nth-child(3) section a {
 
 
 /* -------------------------- 
------------- TIJD -----------
+------------ NAAM & TIJD -----------
 -----------------------------*/
 
 body div {
@@ -842,6 +861,16 @@ body div:first-of-type {
     bottom: 1.5em;
     left: 2.75em;
 }
+
+body div span {
+    font-weight: 600;
+}
+
+body div p {
+    font-weight: normal;
+}
+
+
 
 /* -------------------------- 
 --------- ANIMATIES ---------
@@ -892,5 +921,32 @@ body div:first-of-type {
 
     100% {
         opacity: 1;
+    }
+}
+
+
+@media screen and (max-width: 480px) {
+
+    body,
+    main {
+        overflow: hidden;
+    }
+
+    .knoppen-container {
+        right: auto;
+        left: auto;
+        transform: scale(0.75);
+        bottom: 3em;
+    }
+
+    .kaarten-container>ul {
+        width: auto;
+        transform: scale(0.75);
+    }
+
+    body div {
+        font-size: 12px;
+        top: 3em;
+        bottom: auto;
     }
 }

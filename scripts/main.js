@@ -3,7 +3,7 @@
 -----------------------------*/
 
 // Variabele voor de kaart elementen
-var kaartenTekst = document.querySelector(".kaarten-container ul li p");
+var kaartenTekst = document.querySelectorAll(".kaarten-container ul li p");
 var puntenKaart = document.querySelectorAll(".kaarten-container ul li span");
 var kaartVorm = document.querySelectorAll(".kaarten-container ul li img");
 
@@ -112,7 +112,7 @@ setTimeout(() => {
   console.log(willekeurigeStellingen);
 }, 100);
 
-// Array items in variabele stoppen
+//  Array items in variabele stoppen
 var getrokkenKaart = willekeurigeStellingen[willekeurigeKaart].stelling;
 var bijhorendePunten = willekeurigeStellingen[willekeurigeKaart].punten;
 var mening = willekeurigeStellingen[willekeurigeKaart].mening;
@@ -148,7 +148,10 @@ function wijzigingFunc() {
   }, 1500);
 }
 
-kaartenTekst.innerHTML = getrokkenKaart;
+// Alle stellingen ophalen
+for (i = 0; i < kaartenTekst.length; ++i) {
+  kaartenTekst[i].innerHTML = getrokkenKaart;
+}
 
 // Alle vormen ophalen
 for (i = 0; i < kaartVorm.length; ++i) {
@@ -217,7 +220,10 @@ function eensKnopFunc() {
   mening = willekeurigeStellingen[willekeurigeKaart].mening;
   vorm = willekeurigeStellingen[willekeurigeKaart].vorm;
 
-  kaartenTekst.innerHTML = getrokkenKaart;
+  // Alle stellingen ophalen, nog in test...
+  for (i = 0; i < kaartenTekst.length; ++i) {
+    kaartenTekst[i].innerHTML = getrokkenKaart;
+  }
 
   // Punten en vormen plaatsen op de kaart
   for (i = 0; i < puntenKaart.length; ++i) {
@@ -301,7 +307,10 @@ function oneensKnopFunc() {
   mening = willekeurigeStellingen[willekeurigeKaart].mening;
   vorm = willekeurigeStellingen[willekeurigeKaart].vorm;
 
-  kaartenTekst.innerHTML = getrokkenKaart;
+  // Alle stellingen ophalen, nog in test...
+  for (i = 0; i < kaartenTekst.length; ++i) {
+    kaartenTekst[i].innerHTML = getrokkenKaart;
+  }
 
   // Punten en vormen plaatsen op de kaart
   for (i = 0; i < puntenKaart.length; ++i) {
@@ -361,6 +370,7 @@ oneensKnop.addEventListener("click", oneensKnopFunc);
 -----------------------------*/
 
 var afgelopenOverlay = document.querySelector(".afgelopen-overlay");
+var gewonnenPunten = document.querySelector(".gewonnen span:nth-child(2)");
 
 // Check of er nog stellingen zijn
 function checkArray() {
@@ -369,6 +379,7 @@ function checkArray() {
     oneensKnop.disabled = true;
     eensKnop.disabled = true;
     document.body.classList.add("gewonnen");
+    gewonnenPunten.innerHTML = totaalAantalPunten;
   }
 }
 
@@ -378,8 +389,6 @@ function checkPunten() {
     document.body.classList.add("vergokt");
   }
 }
-
-
 
 /* -------------------------- 
 -------- TIJD ----------
