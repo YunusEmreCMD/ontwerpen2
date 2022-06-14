@@ -1,0 +1,146 @@
+/* -------------------------- 
+-------- AFGELOPEN ----------
+-----------------------------*/
+
+/* Algeme stijling voor beide */
+main section:nth-child(2) section:nth-child(1),
+main section:nth-child(2) section:nth-child(1) section,
+main section:nth-child(2) section:nth-child(2),
+main section:nth-child(2) section:nth-child(2) section {
+    display: none;
+}
+
+main section:nth-child(2) section:nth-child(1),
+main section:nth-child(2) section:nth-child(2) {
+    /* background-color: rgba(255, 255, 255, 0.25); */
+    background-color: rgba(0, 0, 0, 0.6);
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    z-index: 40;
+
+    animation-name: afgelopen;
+    animation-duration: 1.5s;
+}
+
+main section:nth-child(2) section:nth-child(1) section,
+main section:nth-child(2) section:nth-child(2) section {
+    background-color: white;
+    height: 50%;
+    width: 50%;
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    border-radius: 0.5em;
+    box-shadow: 0 0 50px 15px rgba(0, 0, 0, 0.5);
+
+    opacity: 0;
+
+    animation-name: afgelopen;
+    animation-duration: 2s;
+    animation-delay: 1.5s;
+    animation-fill-mode: forwards;
+}
+
+main section:nth-child(2) section:nth-child(1) section p,
+main section:nth-child(2) section:nth-child(2) section p {
+    text-align: center;
+
+    width: 70%;
+    margin: 0 auto;
+    margin-top: 3em;
+
+    font-size: 48px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+main section:nth-child(2) section:nth-child(1) section a,
+main section:nth-child(2) section:nth-child(2) section a {
+
+    position: absolute;
+    bottom: calc(4em - 2.25em);
+    left: 0;
+    right: 0;
+
+    text-align: center;
+    text-decoration: none;
+
+    width: 40%;
+    margin: 0 auto;
+    padding: 1.25em 0;
+
+    background-color: orange;
+    box-shadow: 0 0 1em orange;
+    color: white;
+    cursor: pointer;
+
+    font-size: 22px;
+    border: none;
+    outline: none;
+    border-radius: 0.5em;
+}
+
+main section:nth-child(2) section:nth-child(1) section span,
+main section:nth-child(2) section:nth-child(2) section span {
+    color: orange;
+}
+
+main section:nth-child(2) section:nth-child(1) section p:nth-child(3),
+main section:nth-child(2) section:nth-child(2) section p:nth-child(3) {
+    font-size: 24px;
+    text-transform: unset;
+
+    opacity: 0.25;
+}
+
+/* afgelopen */
+.gewonnen main section:nth-child(2) section:nth-child(1),
+.gewonnen main section:nth-child(2) section:nth-child(1) section,
+.vergokt main section:nth-child(2) section:nth-child(2),
+.vergokt main section:nth-child(2) section:nth-child(2) section {
+    display: block;
+}
+
+
+
+/* Stijling voor gewonnen */
+main section:nth-child(2) section:nth-child(1) section:before {
+    content: url("/images/confetti-7.gif");
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(2.3);
+
+    transform-origin: center center;
+
+    opacity: 0.75;
+}
+
+main section:nth-child(2) section:nth-child(1) section span:nth-child(2) {
+    margin-left: 1em;
+}
+
+main section:nth-child(2) section:nth-child(1) section span:nth-child(2):before {
+    content: url("/images/chips.svg");
+
+    width: 0.75em;
+    margin-top: 0.09em;
+    margin-left: -1em;
+    /* left: 2em; */
+
+    position: absolute;
+}
+
+
+
+/* Stijling voor vergokt */
+main section:nth-child(2) section:nth-child(2) section a {
+
+    /* filter: grayscale(100%);
+    opacity: 0.75; */
+}

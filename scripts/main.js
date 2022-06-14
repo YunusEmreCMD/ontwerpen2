@@ -18,7 +18,11 @@ var hart = "./images/suit-heart-fill.svg";
 var ruit = "./images/suit-diamond-fill.svg";
 var klaver = "./images/suit-club-fill.svg";
 var schoppe = "./images/suit-spade-fill.svg";
-var joker = "./images/joker-hat-white.svg";
+var joker = "./images/joker-hat.svg";
+
+
+// UL
+var kaartenVak = document.querySelector(".kaart-vak");
 
 // Variabele voor de knoppen
 var oneensKnop = document.querySelector(".knoppen-container button:nth-child(1)");
@@ -35,67 +39,85 @@ var willekeurigeStellingen = [{
     stelling: "Ik vind het goed dat online gokken is gelegaliseerd om witwaswrij en illegaal gokken tegen te gaan. T",
     punten: 100,
     mening: true,
-    vorm: hart
+    vorm: hart,
+    type: "rodekaart"
   },
   {
     stelling: "Ik vind dat bij gokken in het algemeen de verantwoordelijkheid ligt bij de persoon en niet bij de dienstverlener. T",
     punten: 200,
     mening: true,
-    vorm: hart
+    vorm: hart,
+    type: "rodekaart"
   },
   {
     stelling: "Ik vind het goed dat er nu meer en beter gemonitord, ondanks je nu minder privacy hebt. T",
     punten: 200,
     mening: true,
-    vorm: hart
+    vorm: hart,
+    type: "rodekaart"
   },
   {
     stelling: "De preventiebeleid wordt niet altijd nageleefd door gokbedrijven, zij moeten dan een boete betalen. T",
     punten: 300,
     mening: true,
-    vorm: ruit
+    vorm: ruit,
+    type: "rodekaart"
   },
   {
     stelling: "Ik vind het niet kunnen dat wanneer een account van een klant bevroren wordt wegens overmatig gokken, je simpel weg een nieuwe account kan aanmaken. T",
     punten: 200,
     mening: true,
-    vorm: ruit
+    vorm: ruit,
+    type: "rodekaart"
   },
   {
     stelling: "Er moet onder gok bedrijven een overzicht komen van alle gokverslaafde in Nederland. T",
     punten: 300,
     mening: true,
-    vorm: ruit
+    vorm: ruit,
+    type: "rodekaart"
   },
   {
     stelling: "Wanneer een account bevroren wordt bij de ene gokbedrijf, moet dit doorgevoerd worden voor alle accounts ook bij andere gokbedrijven. F",
     punten: 200,
     mening: false,
-    vorm: klaver
+    vorm: klaver,
+    type: "zwartekaart"
   },
   {
     stelling: "Het probleem ligt bij het gokbedrijf als ze hulp aanbieden, maar de klant geen gehoor geeft. F",
     punten: 400,
     mening: false,
-    vorm: klaver
+    vorm: klaver,
+    type: "zwartekaart"
   },
   {
     stelling: "Bijhorende gokbedrijf moet aansprakelijk gesteld worden, wanneer een klant gokverslaafd wordt. F",
     punten: 100,
     mening: false,
-    vorm: schoppe
+    vorm: schoppe,
+    type: "zwartekaart"
   },
   {
     stelling: "Ik vind dat er teveel reclame wordt gemaakt van (online) gokken. F",
     punten: 300,
     mening: false,
-    vorm: schoppe
+    vorm: schoppe,
+    type: "zwartekaart"
   },
   {
-    stelling: "Joker",
-    punten: 200,
+    stelling: "Gokken is gelegaliseerd zodat spelers beter beschermd zijn dan toen gokken illegaal was, maar in praktijk is dit weinig te merken.",
+    punten: 100,
     mening: true,
-    vorm: joker
+    vorm: joker,
+    type: "jokerkaart"
+  },
+  {
+    stelling: "Uit onderzoek blijkt dat er jaarlijks naar schatting 750.000.000 euro wordt uitgegeven aan online en fysiek gokken.",
+    punten: 100,
+    mening: true,
+    vorm: joker,
+    type: "jokerkaart"
   }
 ];
 
@@ -127,14 +149,22 @@ for (i = 0; i < puntenKaart.length; ++i) {
   // Checken welke vorm erbij hoort
   if (vorm === hart || vorm === ruit) {
     puntenKaart[i].style.color = "red";
+    document.body.classList.remove('joker');
+    oneensKnop.innerHTML = "Oneens";
+    eensKnop.innerHTML = "Eens";
+    oneensKnop.disabled = false;
   } else if (vorm === joker) {
     console.log("Jokeerr");
-    puntenKaart[i].style.color = "white";
-    document.body.classList.add("test");
+    puntenKaart[i].style.color = "orange";
+    document.body.classList.add("joker");
     oneensKnop.innerHTML = "<img src='/images/joker-hat-white.svg'>";
     eensKnop.innerHTML = "Doorgaan";
   } else {
     puntenKaart[i].style.color = "black";
+    document.body.classList.remove('joker');
+    oneensKnop.innerHTML = "Oneens";
+    eensKnop.innerHTML = "Eens";
+    oneensKnop.disabled = false;
   }
 
 }
@@ -180,6 +210,7 @@ function kaartOntvangen() {
   setTimeout(() => {
     document.body.classList.add("ontvangen");
   }, 100);
+
 }
 
 
@@ -231,20 +262,20 @@ function eensKnopFunc() {
 
     if (vorm === hart || vorm === ruit) {
       puntenKaart[i].style.color = "red";
-      document.body.classList.remove('test');
+      document.body.classList.remove('joker');
       oneensKnop.innerHTML = "Oneens";
       eensKnop.innerHTML = "Eens";
       oneensKnop.disabled = false;
     } else if (vorm === joker) {
       console.log("Jokeerr");
-      puntenKaart[i].style.color = "white";
-      document.body.classList.add("test");
+      puntenKaart[i].style.color = "orange";
+      document.body.classList.add("joker");
       oneensKnop.innerHTML = "<img src='/images/joker-hat-white.svg'>";
       eensKnop.innerHTML = "Doorgaan";
       oneensKnop.disabled = true;
     } else {
       puntenKaart[i].style.color = "black";
-      document.body.classList.remove('test');
+      document.body.classList.remove('joker');
       oneensKnop.innerHTML = "Oneens";
       eensKnop.innerHTML = "Eens";
       oneensKnop.disabled = false;
@@ -318,20 +349,20 @@ function oneensKnopFunc() {
 
     if (vorm === hart || vorm === ruit) {
       puntenKaart[i].style.color = "red";
-      document.body.classList.remove('test');
+      document.body.classList.remove('joker');
       oneensKnop.innerHTML = "Oneens";
       eensKnop.innerHTML = "Eens";
       oneensKnop.disabled = false;
     } else if (vorm === joker) {
       console.log("Jokeerr");
       puntenKaart[i].style.color = "orange";
-      document.body.classList.add("test");
+      document.body.classList.add("joker");
       oneensKnop.innerHTML = "<img src='/images/joker-hat-white.svg'>";
       eensKnop.innerHTML = "Doorgaan";
       oneensKnop.disabled = true;
     } else {
       puntenKaart[i].style.color = "black";
-      document.body.classList.remove('test');
+      document.body.classList.remove('joker');
       oneensKnop.innerHTML = "Oneens";
       eensKnop.innerHTML = "Eens";
       oneensKnop.disabled = false;
@@ -412,8 +443,118 @@ setInterval(updateClock, 1000);
 
 
 
+/* -------------------------- 
+----- KAARTEN AANMAKEN ------
+-----------------------------*/
+
+// // Container
+// var kaartenVak = document.querySelector(".kaart-vak");
+// var kaartMakenLi = document.createElement("li");
+
+// // Header
+// var kaartMakenHeader = document.createElement("header");
+// var kaartMakenImgH = document.createElement("img");
+// var kaartMakenSpanH = document.createElement("span");
+
+// // Middenstuk
+// var kaartMakenImgM = document.createElement("img");
+// var kaartMakenP = document.createElement("p");
+
+// // Footer
+// var kaartMakenFooter = document.createElement("footer");
+// var kaartMakenImgF = document.createElement("img");
+// var kaartMakenSpanF = document.createElement("span");
 
 
+
+
+willekeurigeStellingen = willekeurigeStellingen.sort((a, b) => 0.5 - Math.random());
+
+
+// for (i = 0; i < willekeurigeStellingen.length; ++i)(function (willekeurigeStelling) {
+willekeurigeStellingen.forEach(function (willekeurigeStelling) {
+
+  // Container
+  var kaartMakenLi = document.createElement("li");
+
+  // Header
+  var kaartMakenHeader = document.createElement("header");
+  var kaartMakenImgH = document.createElement("img");
+  var kaartMakenSpanH = document.createElement("span");
+
+  // Middenstuk
+  var kaartMakenImgM = document.createElement("img");
+  var kaartMakenP = document.createElement("p");
+
+  // Footer
+  var kaartMakenFooter = document.createElement("footer");
+  var kaartMakenImgF = document.createElement("img");
+  var kaartMakenSpanF = document.createElement("span");
+
+
+  // ELEMENTEN VULLEN
+
+  // F
+  kaartMakenImgH.src = willekeurigeStelling.vorm;
+  kaartMakenSpanH.textContent = willekeurigeStelling.punten;
+
+  // M
+  kaartMakenImgM.src = willekeurigeStelling.vorm;
+  kaartMakenP.textContent = willekeurigeStelling.stelling;
+
+  // F
+  kaartMakenImgF.src = willekeurigeStelling.vorm;
+  kaartMakenSpanF.textContent = willekeurigeStelling.punten;
+
+
+  // Footer
+  kaartMakenFooter.append(kaartMakenSpanF);
+  kaartMakenFooter.append(kaartMakenImgF);
+  // kaartMakenP.after(kaartMakenFooter);
+
+  // Header
+  kaartMakenHeader.appendChild(kaartMakenImgH);
+  kaartMakenHeader.appendChild(kaartMakenSpanH);
+
+  kaartMakenLi.appendChild(kaartMakenHeader);
+
+  // Middenstuk
+  kaartMakenLi.appendChild(kaartMakenImgM);
+  kaartMakenLi.appendChild(kaartMakenP);
+
+  kaartMakenLi.appendChild(kaartMakenFooter);
+
+  kaartMakenLi.classList.add(willekeurigeStelling.type);
+  kaartMakenLi.dataset.mening = willekeurigeStelling.mening;
+  kaartMakenLi.dataset.punten = willekeurigeStelling.punten;
+
+  // Containers
+  kaartenVak.appendChild(kaartMakenLi);
+
+  // Footer
+  // kaartMakenFooter.append(kaartMakenImgF);
+  // kaartMakenFooter.append(kaartMakenSpanF);
+
+
+});
+
+// kaartenVak.appendChild(kaartMakenLi);
+// kaartenVak.appendChild(kaartMakenP);
+
+
+
+function checkUl() {
+
+  var eersteLi = kaartenVak.querySelector("li");
+
+  if (eersteLi) {
+
+  }
+  else {
+    document.body.classList.add("gewonnen");
+    gewonnenPunten.innerHTML = totaalAantalPunten;
+  }
+}
 
 
 
@@ -444,7 +585,30 @@ const stack3 = document.querySelector(".kaarten-container ul li:nth-child(3) ul"
 
 new Sortable(stack1, {
   group: 'shared', // set both lists to same group
-  animation: 150
+  animation: 150,
+  onAdd: function (event) {
+		// console.log(event.item.dataset.mening);
+
+    if(event.item.dataset.mening == "false"){
+      // console.log(true);
+      // console.log(event.item.dataset.mening);
+      // console.log(totaalAantalPunten);
+      // console.log(parseInt(event.item.dataset.punten));
+      totaalAantalPunten += parseInt(event.item.dataset.punten);
+      // console.log(totaalAantalPunten);
+    }
+    else{
+      // console.log(false);
+      // console.log(event.item.dataset.mening);
+      // console.log(totaalAantalPunten);
+      // console.log(parseInt(event.item.dataset.punten));
+      totaalAantalPunten -= parseInt(event.item.dataset.punten);
+      // console.log(totaalAantalPunten);
+    }
+    weergaveAantalPunten.innerHTML = totaalAantalPunten;
+    checkUl()
+    checkPunten()
+	}
 });
 
 new Sortable(stack2, {
@@ -454,7 +618,30 @@ new Sortable(stack2, {
 
 new Sortable(stack3, {
   group: 'shared',
-  animation: 150
+  animation: 150,
+  onAdd: function (event) {
+		// console.log(event.item.dataset.mening);
+
+    if(event.item.dataset.mening == "true"){
+      // console.log(true);
+      // console.log(event.item.dataset.mening);
+      // console.log(totaalAantalPunten);
+      // console.log(parseInt(event.item.dataset.punten));
+      totaalAantalPunten += parseInt(event.item.dataset.punten);
+      // console.log(totaalAantalPunten);
+    }
+    else{
+      // console.log(false);
+      // console.log(event.item.dataset.mening);
+      // console.log(totaalAantalPunten);
+      // console.log(parseInt(event.item.dataset.punten));
+      totaalAantalPunten -= parseInt(event.item.dataset.punten);
+      // console.log(totaalAantalPunten);
+    }
+    weergaveAantalPunten.innerHTML = totaalAantalPunten;
+    checkUl()
+    checkPunten()
+	}
 });
 
 

@@ -15,7 +15,7 @@
 
 @font-face {
     font-family: "raleway";
-    src: url('https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap');
+    src: url('/fonts/Raleway-Regular.ttf') format("ttf");
 }
 
 /* -------------------------- 
@@ -208,6 +208,36 @@ p {
 .fruitautomaat-container.verbergen {
     display: none;
 }
+
+
+
+/* -------------------------- 
+----------- PROMO -----------
+-----------------------------*/
+
+.promo {
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100vh;
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    /* background-image: url("/images/promo1.jpg");
+    background-repeat: no-repeat;
+    background-size: cover; */
+
+
+    z-index: 100;
+
+    display: none;
+}
+
+
+
+
 
 
 
@@ -410,6 +440,61 @@ p {
     position: relative;
 }
 
+
+
+
+/* NIEUWE ITERATIE */
+.kaarten-container>ul>li:nth-child(1) {
+    background-color: var(--oneens-knop-kleur);
+
+    box-shadow: inset #9b434479 5px 5px 10px 2px,
+        inset #9b434479 -2px -2px 10px 2px;
+
+    position: relative;
+}
+
+.kaarten-container>ul>li:nth-child(3) {
+    background-color: var(--eens-knop-kleur);
+
+    box-shadow: inset #32501c6e 5px 5px 10px 2px,
+        inset #32501c6e -2px -2px 10px 2px;
+
+    position: relative;
+}
+
+
+.kaarten-container>ul>li:nth-child(1) ul:empty:before {
+    content: "Oneens";
+
+    font-family: stencil;
+    color: #9b434479;
+
+    font-size: 64px;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+}
+
+
+.kaarten-container>ul>li:nth-child(3) ul:empty:before {
+    content: "Eens";
+
+    font-family: stencil;
+    color: #32501c6e;
+
+    font-size: 64px;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+}
+
+
+
+
 .kaarten-container ul li ul li {
     align-self: center;
 
@@ -447,20 +532,21 @@ p {
 }
 
 .fruit2 .kaarten-container ul li ul li:nth-child(1) {
-    transform: rotate(-0.5deg) !important;
+    transform: rotate(-0.5deg);
 }
 
 .fruit2 .kaarten-container ul li ul li:nth-child(2) {
-    transform: rotate(4deg) !important;
+    transform: rotate(4deg);
 }
 
 .fruit2 .kaarten-container ul li ul li:nth-child(3) {
-    transform: rotate(2deg) !important;
+    transform: rotate(2deg);
 }
 
 
 
-.gewonnen .kaarten-container ul li ul li {
+.gewonnen .kaarten-container ul li ul li,
+.verloren .kaarten-container ul li ul li {
     animation-name: none;
 }
 
@@ -548,13 +634,27 @@ p {
 }
 
 
-.test .kaarten-container ul li ul li {
-    background-color: orange;
+/* Wanneer er joker wordt getrokken */
+.joker .kaarten-container ul li ul li {
+    background-color: white;
     box-shadow: 0 0 1em orange;
-    color: white;
+    /* color: white; */
+    font-weight: 600;
+    font-family: stencil;
 }
 
-.test .kaarten-container ul li img:nth-child(2) {
+/* .joker .kaarten-container ul li ul li header span,
+.joker .kaarten-container ul li ul li footer span {
+    font-size: 22px;
+    font-weight: 600;
+} */
+
+/* .joker .kaarten-container ul li ul li header img,
+.joker .kaarten-container ul li ul li footer img {
+    height: 7.5em;
+} */
+
+.joker .kaarten-container ul li ul li img:nth-child(2) {
     opacity: 0.15;
 }
 
@@ -610,20 +710,6 @@ p {
     font-weight: 600;
 }
 
-
-/* Wanneer joker getrokken wordt */
-.test .knoppen-container button,
-.test .knoppen-container button:nth-child(1),
-.test .knoppen-container button:nth-child(2) {
-    background-color: orange;
-    box-shadow: 0 0 1em orange;
-    color: white;
-}
-
-.test .knoppen-container {
-    gap: 0;
-}
-
 .knoppen-container button:focus {
     opacity: 0.8;
 }
@@ -659,14 +745,35 @@ p {
     opacity: 1;
 }
 
+/* Wanneer joker getrokken wordt */
+.joker .knoppen-container button,
+.joker .knoppen-container button:nth-child(1),
+.joker .knoppen-container button:nth-child(2) {
+    background-color: orange;
+    box-shadow: 0 0 1em orange;
+    color: white;
+}
+
+.joker .knoppen-container {
+    gap: 0;
+}
+
+
 
 
 .wijziging-container {
+
+    font-family: raleway;
+
     color: #FECA3F;
     font-weight: 600;
 
     position: absolute;
     bottom: 10.25em;
+
+    left: 0;
+    right: 0;
+    text-align: center;
 
     z-index: 10;
 }
@@ -675,7 +782,6 @@ p {
 
 
 /* SLEPEN */
-
 .sortable-ghost {
     opacity: 0;
 }
@@ -690,15 +796,29 @@ p {
 -----------------------------*/
 
 /* Algeme stijling voor beide */
-main section:nth-child(2),
-main section:nth-child(2) section,
 main section:nth-child(3),
-main section:nth-child(3) section {
+main section:nth-child(4) {
+
+    font-family: raleway;
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100vh;
+}
+
+/* Algeme stijling voor beide */
+main section:nth-child(3),
+main section:nth-child(3) section,
+main section:nth-child(4),
+main section:nth-child(4) section {
     display: none;
 }
 
-main section:nth-child(2),
-main section:nth-child(3) {
+main section:nth-child(3),
+main section:nth-child(4) {
     /* background-color: rgba(255, 255, 255, 0.25); */
     background-color: rgba(0, 0, 0, 0.6);
     height: 100vh;
@@ -710,8 +830,8 @@ main section:nth-child(3) {
     animation-duration: 1.5s;
 }
 
-main section:nth-child(2) section,
-main section:nth-child(3) section {
+main section:nth-child(3) section,
+main section:nth-child(4) section {
     background-color: white;
     height: 50%;
     width: 50%;
@@ -732,21 +852,21 @@ main section:nth-child(3) section {
     animation-fill-mode: forwards;
 }
 
-main section:nth-child(2) section p,
-main section:nth-child(3) section p {
+main section:nth-child(3) section p,
+main section:nth-child(4) section p {
     text-align: center;
 
-    width: 60%;
+    width: 70%;
     margin: 0 auto;
-    margin-top: 2em;
+    margin-top: 3em;
 
-    font-size: 32px;
+    font-size: 48px;
     font-weight: 600;
     text-transform: uppercase;
 }
 
-main section:nth-child(2) section a,
-main section:nth-child(3) section a {
+main section:nth-child(3) section a,
+main section:nth-child(4) section a {
 
     position: absolute;
     bottom: calc(4em - 2.25em);
@@ -771,36 +891,31 @@ main section:nth-child(3) section a {
     border-radius: 0.5em;
 }
 
-main section:nth-child(2) section span,
-main section:nth-child(3) section span {
+main section:nth-child(3) section span,
+main section:nth-child(4) section span {
     color: orange;
 }
 
-main section:nth-child(2) section span,
-main section:nth-child(3) section span {
-    color: orange;
-}
-
-main section:nth-child(2) section p:nth-child(3),
-main section:nth-child(3) section p:nth-child(3) {
-    font-size: 20px;
+main section:nth-child(3) section p:nth-child(3),
+main section:nth-child(4) section p:nth-child(3) {
+    font-size: 24px;
     text-transform: unset;
 
     opacity: 0.25;
 }
 
 /* afgelopen */
-.gewonnen main section:nth-child(2),
-.gewonnen main section:nth-child(2) section,
-.vergokt main section:nth-child(3),
-.vergokt main section:nth-child(3) section {
+.gewonnen main section:nth-child(3),
+.gewonnen main section:nth-child(3) section,
+.vergokt main section:nth-child(4),
+.vergokt main section:nth-child(4) section {
     display: block;
 }
 
 
 
 /* Stijling voor gewonnen */
-main section:nth-child(2) section:before {
+main section:nth-child(3) section:before {
     content: url("/images/confetti-7.gif");
     position: absolute;
 
@@ -813,11 +928,11 @@ main section:nth-child(2) section:before {
     opacity: 0.75;
 }
 
-main section:nth-child(2) section span:nth-child(2) {
+main section:nth-child(3) section span:nth-child(2) {
     margin-left: 1em;
 }
 
-main section:nth-child(2) section span:nth-child(2):before {
+main section:nth-child(3) section span:nth-child(2):before {
     content: url("/images/chips.svg");
 
     width: 0.75em;
@@ -831,13 +946,10 @@ main section:nth-child(2) section span:nth-child(2):before {
 
 
 /* Stijling voor vergokt */
+main section:nth-child(4) section a {
 
-main section:nth-child(3) section a {
-
-    filter: grayscale(100%);
-    opacity: 0.75;
-
-    pointer-events: none;
+    /* filter: grayscale(100%);
+    opacity: 0.75; */
 }
 
 
@@ -940,13 +1052,14 @@ body div p {
         right: auto;
         left: auto;
         transform: scale(0.75);
-        /* bottom: 3em; */
-        gap: 2em;
+        bottom: 3em;
     }
 
     .kaarten-container>ul {
         width: auto;
         transform: scale(0.75);
+
+        gap: 1em;
     }
 
     body div {
