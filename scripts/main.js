@@ -9,30 +9,39 @@ var kaartVorm = document.querySelectorAll(".kaarten-container ul li img");
 
 // Variabele voor de punten telling
 var weergaveAantalPunten = document.querySelector(".knoppen-container button:nth-child(2)");
+var weergaveAantalPunten2 = document.querySelector(".aantal-punten span");
 var beginPunten = 100;
 var totaalAantalPunten = beginPunten;
 weergaveAantalPunten.innerHTML = totaalAantalPunten;
+weergaveAantalPunten2.innerHTML = totaalAantalPunten;
 
 // Alle kaart vormen
 var hart = "./images/suit-heart-fill.svg";
 var ruit = "./images/suit-diamond-fill.svg";
 var klaver = "./images/suit-club-fill.svg";
 var schoppe = "./images/suit-spade-fill.svg";
-var joker = "./images/joker-hat.svg";
+var joker = "./images/joker-orange.svg";
 
-
-// UL
+// Ul met alle kaarten
 var kaartenVak = document.querySelector(".kaart-vak");
 
-// Variabele voor de knoppen
-var oneensKnop = document.querySelector(".knoppen-container button:nth-child(1)");
-var eensKnop = document.querySelector(".knoppen-container button:nth-child(3)");
+// Weergave punten verandering
+var wijziging = document.querySelector(".wijziging-container span");
+
+
+
+
+// setTimeout(() => {
+//   document.body.classList.add("tijdelijk");
+// }, 5000);
+
+
+
 
 
 
 /* -------------------------- 
---- ARRAY MET WILLEKEURIGE --
---- STELLINGEN --------------
+-- ARRAY MET ALLE KAARTEN ---
 -----------------------------*/
 
 var willekeurigeStellingen = [{
@@ -40,393 +49,104 @@ var willekeurigeStellingen = [{
     punten: 100,
     mening: true,
     vorm: hart,
-    type: "rodekaart"
+    type: "rodekaart",
+    rotatie: "-1.5deg"
   },
   {
     stelling: "Ik vind dat bij gokken in het algemeen de verantwoordelijkheid ligt bij de persoon en niet bij de dienstverlener. T",
     punten: 200,
     mening: true,
     vorm: hart,
-    type: "rodekaart"
+    type: "rodekaart",
+    rotatie: "1.75deg"
   },
   {
     stelling: "Ik vind het goed dat er nu meer en beter gemonitord, ondanks je nu minder privacy hebt. T",
     punten: 200,
     mening: true,
     vorm: hart,
-    type: "rodekaart"
+    type: "rodekaart",
+    rotatie: "-1.5deg"
   },
   {
     stelling: "De preventiebeleid wordt niet altijd nageleefd door gokbedrijven, zij moeten dan een boete betalen. T",
     punten: 300,
     mening: true,
     vorm: ruit,
-    type: "rodekaart"
+    type: "rodekaart",
+    rotatie: "2.5deg"
   },
   {
     stelling: "Ik vind het niet kunnen dat wanneer een account van een klant bevroren wordt wegens overmatig gokken, je simpel weg een nieuwe account kan aanmaken. T",
     punten: 200,
     mening: true,
     vorm: ruit,
-    type: "rodekaart"
+    type: "rodekaart",
+    rotatie: "-1.75deg"
   },
   {
     stelling: "Er moet onder gok bedrijven een overzicht komen van alle gokverslaafde in Nederland. T",
     punten: 300,
     mening: true,
     vorm: ruit,
-    type: "rodekaart"
+    type: "rodekaart",
+    rotatie: "-0.75deg"
   },
   {
     stelling: "Wanneer een account bevroren wordt bij de ene gokbedrijf, moet dit doorgevoerd worden voor alle accounts ook bij andere gokbedrijven. F",
     punten: 200,
     mening: false,
     vorm: klaver,
-    type: "zwartekaart"
+    type: "zwartekaart",
+    rotatie: "2.7deg"
   },
   {
     stelling: "Het probleem ligt bij het gokbedrijf als ze hulp aanbieden, maar de klant geen gehoor geeft. F",
     punten: 400,
     mening: false,
     vorm: klaver,
-    type: "zwartekaart"
+    type: "zwartekaart",
+    rotatie: "-3.2deg"
   },
   {
     stelling: "Bijhorende gokbedrijf moet aansprakelijk gesteld worden, wanneer een klant gokverslaafd wordt. F",
     punten: 100,
     mening: false,
     vorm: schoppe,
-    type: "zwartekaart"
+    type: "zwartekaart",
+    rotatie: "2.6deg"
   },
   {
     stelling: "Ik vind dat er teveel reclame wordt gemaakt van (online) gokken. F",
     punten: 300,
     mening: false,
     vorm: schoppe,
-    type: "zwartekaart"
+    type: "zwartekaart",
+    rotatie: "2.7deg"
   },
   {
     stelling: "Gokken is gelegaliseerd zodat spelers beter beschermd zijn dan toen gokken illegaal was, maar in praktijk is dit weinig te merken.",
     punten: 100,
     mening: true,
     vorm: joker,
-    type: "jokerkaart"
+    type: "jokerkaart",
+    rotatie: "-2.5deg"
   },
   {
     stelling: "Uit onderzoek blijkt dat er jaarlijks naar schatting 750.000.000 euro wordt uitgegeven aan online en fysiek gokken.",
     punten: 100,
     mening: true,
     vorm: joker,
-    type: "jokerkaart"
+    type: "jokerkaart",
+    rotatie: "-2.25deg"
   }
 ];
 
 
 
 /* -------------------------- 
-------- KAART TREKKEN -------
+----------- TIJD ------------
 -----------------------------*/
-
-// Willekeurige kaart trekken
-var willekeurigeKaart = Math.floor(Math.random() * willekeurigeStellingen.length);
-setTimeout(() => {
-  willekeurigeStellingen.splice(willekeurigeKaart, 1);
-  console.log(willekeurigeStellingen);
-}, 100);
-
-//  Array items in variabele stoppen
-var getrokkenKaart = willekeurigeStellingen[willekeurigeKaart].stelling;
-var bijhorendePunten = willekeurigeStellingen[willekeurigeKaart].punten;
-var mening = willekeurigeStellingen[willekeurigeKaart].mening;
-var vorm = willekeurigeStellingen[willekeurigeKaart].vorm;
-
-// Punten optellen of aftrekken
-var wijziging = document.querySelector(".wijziging-container span");
-
-for (i = 0; i < puntenKaart.length; ++i) {
-  puntenKaart[i].innerHTML = bijhorendePunten;
-
-  // Checken welke vorm erbij hoort
-  if (vorm === hart || vorm === ruit) {
-    puntenKaart[i].style.color = "red";
-    document.body.classList.remove('joker');
-    oneensKnop.innerHTML = "Oneens";
-    eensKnop.innerHTML = "Eens";
-    oneensKnop.disabled = false;
-  } else if (vorm === joker) {
-    console.log("Jokeerr");
-    puntenKaart[i].style.color = "orange";
-    document.body.classList.add("joker");
-    oneensKnop.innerHTML = "<img src='/images/joker-hat-white.svg'>";
-    eensKnop.innerHTML = "Doorgaan";
-  } else {
-    puntenKaart[i].style.color = "black";
-    document.body.classList.remove('joker');
-    oneensKnop.innerHTML = "Oneens";
-    eensKnop.innerHTML = "Eens";
-    oneensKnop.disabled = false;
-  }
-
-}
-
-// Opgetelde of afgetrokken punten weergeven
-function wijzigingFunc() {
-  wijziging.style.display = "block";
-
-  setTimeout(() => {
-    wijziging.style.display = "none";
-  }, 1500);
-}
-
-// Alle stellingen ophalen
-for (i = 0; i < kaartenTekst.length; ++i) {
-  kaartenTekst[i].innerHTML = getrokkenKaart;
-}
-
-// Alle vormen ophalen
-for (i = 0; i < kaartVorm.length; ++i) {
-  kaartVorm[i].src = vorm;
-}
-
-
-
-// Random rotatie voor de kaart
-var negatieveRotatie = -2;
-var positieveRotatie = 2;
-
-function randomRotatieFunc() {
-
-  var randomRotatie = Math.random() * (positieveRotatie - negatieveRotatie) + negatieveRotatie;
-  console.log("Random rotatie " + randomRotatie);
-
-  document.body.style.cssText = "--random-deg: " + randomRotatie + "deg";
-}
-
-
-// Kaarten ontvangen
-function kaartOntvangen() {
-  document.body.classList.remove("ontvangen");
-
-  setTimeout(() => {
-    document.body.classList.add("ontvangen");
-  }, 100);
-
-}
-
-
-console.log(willekeurigeKaart, willekeurigeStellingen[willekeurigeKaart].stelling, willekeurigeStellingen[willekeurigeKaart].punten, willekeurigeStellingen[willekeurigeKaart].mening);
-
-
-
-/* -------------------------- 
--------- EENS KNOP ----------
------------------------------*/
-
-function eensKnopFunc() {
-
-  // Punten optellen of aftrekken o.b.v. de mening
-  if (mening == true) {
-    totaalAantalPunten = beginPunten += bijhorendePunten;
-    wijziging.innerHTML = "+ " + bijhorendePunten;
-    console.log("juist");
-
-    wijzigingFunc();
-
-  } else {
-    totaalAantalPunten = beginPunten -= bijhorendePunten;
-    wijziging.innerHTML = "- " + bijhorendePunten;
-    console.log("onjuist");
-
-    wijzigingFunc();
-  }
-
-  weergaveAantalPunten.innerHTML = totaalAantalPunten;
-
-  // Opnieuw random item uit array halen
-  willekeurigeKaart = Math.floor(Math.random() * willekeurigeStellingen.length);
-
-  // Alle variabele weer ophalen om te hergebruiken
-  getrokkenKaart = willekeurigeStellingen[willekeurigeKaart].stelling;
-  bijhorendePunten = willekeurigeStellingen[willekeurigeKaart].punten;
-  mening = willekeurigeStellingen[willekeurigeKaart].mening;
-  vorm = willekeurigeStellingen[willekeurigeKaart].vorm;
-
-  // Alle stellingen ophalen, nog in test...
-  for (i = 0; i < kaartenTekst.length; ++i) {
-    kaartenTekst[i].innerHTML = getrokkenKaart;
-  }
-
-  // Punten en vormen plaatsen op de kaart
-  for (i = 0; i < puntenKaart.length; ++i) {
-    puntenKaart[i].innerHTML = bijhorendePunten;
-
-    if (vorm === hart || vorm === ruit) {
-      puntenKaart[i].style.color = "red";
-      document.body.classList.remove('joker');
-      oneensKnop.innerHTML = "Oneens";
-      eensKnop.innerHTML = "Eens";
-      oneensKnop.disabled = false;
-    } else if (vorm === joker) {
-      console.log("Jokeerr");
-      puntenKaart[i].style.color = "orange";
-      document.body.classList.add("joker");
-      oneensKnop.innerHTML = "<img src='/images/joker-hat-white.svg'>";
-      eensKnop.innerHTML = "Doorgaan";
-      oneensKnop.disabled = true;
-    } else {
-      puntenKaart[i].style.color = "black";
-      document.body.classList.remove('joker');
-      oneensKnop.innerHTML = "Oneens";
-      eensKnop.innerHTML = "Eens";
-      oneensKnop.disabled = false;
-    }
-  }
-
-
-
-  kaartOntvangen();
-  randomRotatie = Math.random() * (positieveRotatie - negatieveRotatie) + negatieveRotatie;
-
-  randomRotatieFunc();
-  console.log(randomRotatie);
-
-
-
-  // Alle vormen ophalen
-  for (i = 0; i < kaartVorm.length; ++i) {
-    kaartVorm[i].src = vorm;
-  }
-
-  // Verwijder gekozen kaart
-  willekeurigeStellingen.splice(willekeurigeKaart, 1);
-  console.log(willekeurigeStellingen);
-  console.log(willekeurigeKaart);
-
-  checkArray();
-  checkPunten()
-
-}
-eensKnop.addEventListener("click", eensKnopFunc);
-
-
-
-// Oneens knoppen
-function oneensKnopFunc() {
-
-  if (mening == false) {
-    totaalAantalPunten = beginPunten += bijhorendePunten;
-    wijziging.innerHTML = "+ " + bijhorendePunten;
-    console.log("juist");
-
-    wijzigingFunc();
-  } else {
-    totaalAantalPunten = beginPunten -= bijhorendePunten;
-    wijziging.innerHTML = "- " + bijhorendePunten;
-    console.log("onjuist");
-
-    wijzigingFunc();
-  }
-
-  weergaveAantalPunten.innerHTML = totaalAantalPunten;
-
-  // Opnieuw random item uit array halen
-  willekeurigeKaart = Math.floor(Math.random() * willekeurigeStellingen.length);
-
-  // Alle variabele weer ophalen om te hergebruiken
-  getrokkenKaart = willekeurigeStellingen[willekeurigeKaart].stelling;
-  bijhorendePunten = willekeurigeStellingen[willekeurigeKaart].punten;
-  mening = willekeurigeStellingen[willekeurigeKaart].mening;
-  vorm = willekeurigeStellingen[willekeurigeKaart].vorm;
-
-  // Alle stellingen ophalen, nog in test...
-  for (i = 0; i < kaartenTekst.length; ++i) {
-    kaartenTekst[i].innerHTML = getrokkenKaart;
-  }
-
-  // Punten en vormen plaatsen op de kaart
-  for (i = 0; i < puntenKaart.length; ++i) {
-    puntenKaart[i].innerHTML = bijhorendePunten;
-
-    if (vorm === hart || vorm === ruit) {
-      puntenKaart[i].style.color = "red";
-      document.body.classList.remove('joker');
-      oneensKnop.innerHTML = "Oneens";
-      eensKnop.innerHTML = "Eens";
-      oneensKnop.disabled = false;
-    } else if (vorm === joker) {
-      console.log("Jokeerr");
-      puntenKaart[i].style.color = "orange";
-      document.body.classList.add("joker");
-      oneensKnop.innerHTML = "<img src='/images/joker-hat-white.svg'>";
-      eensKnop.innerHTML = "Doorgaan";
-      oneensKnop.disabled = true;
-    } else {
-      puntenKaart[i].style.color = "black";
-      document.body.classList.remove('joker');
-      oneensKnop.innerHTML = "Oneens";
-      eensKnop.innerHTML = "Eens";
-      oneensKnop.disabled = false;
-    }
-  }
-
-
-
-  kaartOntvangen();
-  randomRotatie = Math.random() * (positieveRotatie - negatieveRotatie) + negatieveRotatie;
-
-  randomRotatieFunc();
-  console.log(randomRotatie);
-
-
-
-  // Haal alle vormen op
-  for (i = 0; i < kaartVorm.length; ++i) {
-    kaartVorm[i].src = vorm;
-  }
-
-  // Verwijder gekozen kaart
-  willekeurigeStellingen.splice(willekeurigeKaart, 1);
-  console.log(willekeurigeStellingen);
-
-  checkArray();
-  checkPunten()
-
-}
-oneensKnop.addEventListener("click", oneensKnopFunc);
-
-
-
-/* -------------------------- 
--------- AFGELOPEN ----------
------------------------------*/
-
-var afgelopenOverlay = document.querySelector(".afgelopen-overlay");
-var gewonnenPunten = document.querySelector(".gewonnen span:nth-child(2)");
-
-// Check of er nog stellingen zijn
-function checkArray() {
-  if (willekeurigeStellingen.length === 0) {
-    console.log("Alle stellingen zijn beantwoordt!");
-    oneensKnop.disabled = true;
-    eensKnop.disabled = true;
-    document.body.classList.add("gewonnen");
-    gewonnenPunten.innerHTML = totaalAantalPunten;
-  }
-}
-
-function checkPunten() {
-  if (totaalAantalPunten <= 0) {
-    console.log("Alle geld is op...");
-    document.body.classList.add("vergokt");
-  }
-}
-
-/* -------------------------- 
--------- TIJD ----------
------------------------------*/
-
-
-// setInterval(time, 1000);
 
 function updateClock() {
   var tijdTekst = document.querySelector(".tijd span");
@@ -441,124 +161,158 @@ setInterval(updateClock, 1000);
 
 
 
-
-
 /* -------------------------- 
------ KAARTEN AANMAKEN ------
+----- KAARTEN GENEREREN -----
 -----------------------------*/
 
-// // Container
-// var kaartenVak = document.querySelector(".kaart-vak");
-// var kaartMakenLi = document.createElement("li");
-
-// // Header
-// var kaartMakenHeader = document.createElement("header");
-// var kaartMakenImgH = document.createElement("img");
-// var kaartMakenSpanH = document.createElement("span");
-
-// // Middenstuk
-// var kaartMakenImgM = document.createElement("img");
-// var kaartMakenP = document.createElement("p");
-
-// // Footer
-// var kaartMakenFooter = document.createElement("footer");
-// var kaartMakenImgF = document.createElement("img");
-// var kaartMakenSpanF = document.createElement("span");
-
-
-
-
+// Randomize array
 willekeurigeStellingen = willekeurigeStellingen.sort((a, b) => 0.5 - Math.random());
 
-
-// for (i = 0; i < willekeurigeStellingen.length; ++i)(function (willekeurigeStelling) {
 willekeurigeStellingen.forEach(function (willekeurigeStelling) {
 
-  // Container
+  // ----- ELEMENTEN AANMAKEN -----
+
+  // Kaart container aanmaken
   var kaartMakenLi = document.createElement("li");
 
-  // Header
+  // Header elementen aanmaken
   var kaartMakenHeader = document.createElement("header");
   var kaartMakenImgH = document.createElement("img");
   var kaartMakenSpanH = document.createElement("span");
 
-  // Middenstuk
+  // Middenstuk elementen aanmaken
   var kaartMakenImgM = document.createElement("img");
   var kaartMakenP = document.createElement("p");
 
-  // Footer
+  // Footer elementen aanmaken
   var kaartMakenFooter = document.createElement("footer");
-  var kaartMakenImgF = document.createElement("img");
   var kaartMakenSpanF = document.createElement("span");
+  var kaartMakenImgF = document.createElement("img");
 
 
-  // ELEMENTEN VULLEN
 
-  // F
+  // ----- ELEMENTEN VULLEN MET CONTENT -----
+
+  // Header elementen vullen met content
   kaartMakenImgH.src = willekeurigeStelling.vorm;
   kaartMakenSpanH.textContent = willekeurigeStelling.punten;
 
-  // M
+  // Middenstuk vullen met content
   kaartMakenImgM.src = willekeurigeStelling.vorm;
   kaartMakenP.textContent = willekeurigeStelling.stelling;
 
-  // F
-  kaartMakenImgF.src = willekeurigeStelling.vorm;
+  // Footer elementen vullen met content
   kaartMakenSpanF.textContent = willekeurigeStelling.punten;
+  kaartMakenImgF.src = willekeurigeStelling.vorm;
 
 
-  // Footer
-  kaartMakenFooter.append(kaartMakenSpanF);
+
+  // ----- ELEMENTEN KOPPELEN AAN ELEMENT -----
+
+  // Footer koppelen aan elementen
   kaartMakenFooter.append(kaartMakenImgF);
-  // kaartMakenP.after(kaartMakenFooter);
+  kaartMakenFooter.append(kaartMakenSpanF);
 
-  // Header
+  // Header koppelen aan elementen
   kaartMakenHeader.appendChild(kaartMakenImgH);
   kaartMakenHeader.appendChild(kaartMakenSpanH);
 
+  // Header aanmaken
   kaartMakenLi.appendChild(kaartMakenHeader);
 
-  // Middenstuk
+  // Middenstuk koppelen aan elementen
   kaartMakenLi.appendChild(kaartMakenImgM);
   kaartMakenLi.appendChild(kaartMakenP);
 
+  // Footer aanmaken
   kaartMakenLi.appendChild(kaartMakenFooter);
 
+
+
+  // ----- KAARTEN PERSOONLIJK MAKEN -----
+
+  // Class en dataset toevoegen
   kaartMakenLi.classList.add(willekeurigeStelling.type);
   kaartMakenLi.dataset.mening = willekeurigeStelling.mening;
   kaartMakenLi.dataset.punten = willekeurigeStelling.punten;
+  kaartMakenLi.dataset.type = willekeurigeStelling.type;
+  kaartMakenLi.dataset.rotatie = willekeurigeStelling.rotatie;
 
-  // Containers
+  function checkOverlay() {
+    if (document.body.classList.contains("kaarten-animatie-start")) {
+      kaartMakenLi.style.animation = "kaart-ontvangen 2s 0s 1 normal forwards";
+
+      kaartMakenLi.style.transform = "rotate" + willekeurigeStelling.rotatie;
+      kaartMakenLi.style.transform = "translateY(-60em)";
+      console.log("werkt");
+    } else {
+      console.log("werkt niet");
+    }
+  }
+  setInterval(checkOverlay, 200);
+
+  // var willekeurigeRotatie = "--willekeurige-rotatie";
+  // kaartMakenLi.style.setProperty(willekeurigeRotatie, willekeurigeStelling.rotatie);
+
+  var willekeurigeRotatie = willekeurigeStelling.rotatie;
+  kaartMakenLi.style.setProperty("--willekeurige-rotatie", willekeurigeRotatie);
+
+  // console.log(willekeurigeRotatie);
+
+  // Gehele kaart/container aanmaken
   kaartenVak.appendChild(kaartMakenLi);
-
-  // Footer
-  // kaartMakenFooter.append(kaartMakenImgF);
-  // kaartMakenFooter.append(kaartMakenSpanF);
-
-
 });
 
-// kaartenVak.appendChild(kaartMakenLi);
-// kaartenVak.appendChild(kaartMakenP);
 
 
+/* -------------------------- 
+-------- AFGELOPEN ----------
+-----------------------------*/
 
+// Checken of er nog kaarten zijn (gewonnen is)
 function checkUl() {
 
   var eersteLi = kaartenVak.querySelector("li");
+  var gewonnenPunten = document.querySelector(".gewonnen span:nth-child(2)");
 
   if (eersteLi) {
 
-  }
-  else {
+  } else {
     document.body.classList.add("gewonnen");
     gewonnenPunten.innerHTML = totaalAantalPunten;
   }
 }
 
+// Checken of er joker is getrokken
+function checkJoker() {
 
+  // var bovensteLi = document.querySelector(".kaart-vak li:last-child");
 
+  // if (bovensteLi.className == "jokerkaart") {
+  //   document.body.classList.add("joker-getrokken");
+  // } else {
+  //   document.body.classList.remove("joker-getrokken");
+  // }
+  document.body.classList.remove("joker-getrokken");
+}
+checkJoker();
 
+// Checken of het geld op is
+function checkPunten() {
+  if (totaalAantalPunten <= 0) {
+    console.log("Alle geld is op...");
+    document.body.classList.add("vergokt");
+  }
+}
+
+// Optellen/Aftrekken punten
+function wijzigingFunc() {
+  wijziging.style.display = "block";
+
+  setTimeout(() => {
+    wijziging.style.display = "none";
+  }, 1500);
+}
 
 
 
@@ -571,172 +325,172 @@ var slepen = false;
 
 // De container van de sleep-items
 const kaartenContainer = document.querySelector(".kaarten-container");
-// var kaart = document.querySelector(".kaarten-container ul li ul li");
 
-// for (i = 0; i < kaart.length; ++i) {
-//   console.log(kaart[i]);
-// }
-
-
-
+// Sleepomgevingen maken
 const stack1 = document.querySelector(".kaarten-container ul li:nth-child(1) ul");
 const stack2 = document.querySelector(".kaarten-container ul li:nth-child(2) ul");
 const stack3 = document.querySelector(".kaarten-container ul li:nth-child(3) ul");
 
+// Oneens sectie
 new Sortable(stack1, {
-  group: 'shared', // set both lists to same group
+  group: 'shared',
   animation: 150,
   onAdd: function (event) {
-		// console.log(event.item.dataset.mening);
 
-    if(event.item.dataset.mening == "false"){
-      // console.log(true);
-      // console.log(event.item.dataset.mening);
-      // console.log(totaalAantalPunten);
-      // console.log(parseInt(event.item.dataset.punten));
+    if (event.item.dataset.mening == "false") {
       totaalAantalPunten += parseInt(event.item.dataset.punten);
-      // console.log(totaalAantalPunten);
-    }
-    else{
-      // console.log(false);
-      // console.log(event.item.dataset.mening);
-      // console.log(totaalAantalPunten);
-      // console.log(parseInt(event.item.dataset.punten));
+      wijziging.innerHTML = "+ " + event.item.dataset.punten;
+    } else {
       totaalAantalPunten -= parseInt(event.item.dataset.punten);
-      // console.log(totaalAantalPunten);
+      wijziging.innerHTML = "- " + event.item.dataset.punten;
     }
     weergaveAantalPunten.innerHTML = totaalAantalPunten;
-    checkUl()
-    checkPunten()
-	}
+    weergaveAantalPunten2.innerHTML = totaalAantalPunten;
+    checkUl();
+    checkPunten();
+    wijzigingFunc();
+    checkJoker();
+  }
 });
 
+
+// var jokerKaartGetrokken = document.querySelector(".joker-getrokken .kaarten-container>ul>li:nth-child(3)"); 
+
+// Midden sectie
 new Sortable(stack2, {
   group: 'shared',
   animation: 150,
+  onStart: function (event) {
+    if (event.item.dataset.type == "jokerkaart") {
+      document.body.classList.add("joker-getrokken");
+    } else {}
+  }
 });
 
+
+
+// Eens sectie
 new Sortable(stack3, {
   group: 'shared',
   animation: 150,
   onAdd: function (event) {
-		// console.log(event.item.dataset.mening);
-
-    if(event.item.dataset.mening == "true"){
-      // console.log(true);
-      // console.log(event.item.dataset.mening);
-      // console.log(totaalAantalPunten);
-      // console.log(parseInt(event.item.dataset.punten));
+    if (event.item.dataset.mening == "true") {
       totaalAantalPunten += parseInt(event.item.dataset.punten);
-      // console.log(totaalAantalPunten);
-    }
-    else{
-      // console.log(false);
-      // console.log(event.item.dataset.mening);
-      // console.log(totaalAantalPunten);
-      // console.log(parseInt(event.item.dataset.punten));
+      wijziging.innerHTML = "+ " + event.item.dataset.punten;
+    } else {
       totaalAantalPunten -= parseInt(event.item.dataset.punten);
-      // console.log(totaalAantalPunten);
+      wijziging.innerHTML = "- " + event.item.dataset.punten;
     }
     weergaveAantalPunten.innerHTML = totaalAantalPunten;
-    checkUl()
-    checkPunten()
-	}
+    weergaveAantalPunten2.innerHTML = totaalAantalPunten;
+    checkUl();
+    checkPunten();
+    wijzigingFunc();
+    checkJoker();
+  }
 });
 
 
 
+/* -------------------------- 
+------ ACCOUNT AANMAKEN -----
+-----------------------------*/
+
+var checkBox = document.querySelector(".account-overlay form input[type=checkbox]");
+var checkBox2 = document.getElementById("checkbox-voorwaarde");
+var geboorteDatum = document.getElementById("geboorte-datum").value;
+// var formButton = document.querySelector(".aangevinkt button");
+
+function date() {
+  console.log(geboorteDatum);
+}
+setInterval(date, 500);
+
+
+
+
+
+// Account form checken
+function checkAangevinkt() {
+
+  inputNaam = document.querySelector(".account-overlay input[type=text]").value;
+  inpuAchterNaam = document.querySelector(".account-overlay input[type=email]").value;
+  inputTelefoon = document.querySelector(".account-overlay input[type=tel]").value;
+
+  if (checkBox2.checked && inputNaam && inpuAchterNaam && inputTelefoon) {
+    console.log("gecheckt");
+    document.body.classList.add("aangevinkt");
+  } else {
+    console.log("nog-niet");
+    document.body.classList.remove("aangevinkt");
+  }
+}
+setInterval(checkAangevinkt, 500);
+
+
+
+// KNOP
+var accountAanmakenKnop = document.querySelector(".account-overlay form button");
+var accountContainer = document.querySelector(".account-container");
+
+function weghalenAccountOverlay() {
+
+  setTimeout(() => {
+    document.body.classList.add("weg-account-overlay");
+  }, 250);
+
+}
+accountAanmakenKnop.addEventListener("click", weghalenAccountOverlay);
+
+
+// promo weg
+var promoKnop = document.querySelector(".promo button");
+var promoContainer = document.querySelector(".promo");
+
+function weghalenPromoContainer() {
+  document.body.classList.add("kaarten-animatie-start");
+
+  setTimeout(() => {
+    document.body.classList.add("weg-promo-overlay");
+  }, 250);
+
+}
+promoContainer.addEventListener("click", weghalenPromoContainer);
 
 
 
 
 
 
-// // Slepen
 
-// // Er wordt niet gesleept
-// var slepen = false;
+// checkBox2.style.margin = "5em";
+// console.log(checkBox2.checked);
 
-// // De container van de sleep-items
-// const kaartenContainer = document.querySelector(".kaarten-container");
-// var kaart = document.querySelector(".kaarten-container ul li");
+// var leeftijd = document.querySelector(".account-overlay input[type=date]").value;
 
-// // sortable aanmaken
-// new Sortable(kaartenContainer, {
-//   forceFallback: true,
-
-//   onStart: function (evt) {
-//     // als er wordt gesleept (beginnen met slepen)
-//     document.body.classList.add("slepen");
-
-//     // testImg.classList.remove("steenStyling");
-
-//     slepen = "true";
-//   },
-//   onEnd: function (evt) {
-//     // als er niet meer wordt gesleept, of wordt losgelaten (einde van slepen)
-//     document.body.classList.remove("slepen");
-//     kaart.classList.add("wegkaart");
-
-//     slepen = false;
-//   }
-// });
-
-// kaart.addEventListener("mouseenter", kaartGesleept);
-
-// function kaartGesleept(e) {
-
-//   // als er wordt gesleept & de eevee heeft GEEN "geevolueerd" class, voer het volgende uit
-//   if(slepen && !this.classList.contains("geevolueerd")) {
-
-//     // clone de sleepbare steen
-//     var clone = document.querySelector(".sortable-fallback");
-//     clone.remove();
-
-//     // voeg class toe, als de steen wordt gebruikt, en verwijder de sleep-cursor
-//     this.classList.add("geevolueerd");
-
-//     // evolveFireStone();
-//     checkImg();
-
-//     document.body.classList.remove("slepen");
-//   }
-// }
-
-
+// setTimeout(() => {
+//   console.log(leeftijd);
+// }, 2000);
 
 
 
 /* -------------------------- 
------ WEGHALEN SCHERMEN -----
+------ NAAM DOORGEVEN -----
 -----------------------------*/
 
-// var fruitAutomaat = document.querySelector(".fruitautomaat-container");
-// var verbergKnop = document.querySelector(".verberg-container button");
+function naamDoorgeven() {
 
-// var fruitAutomaat = document.querySelector(".fruitautomaat-container");
+  var inputNaam = document.querySelector(".account-overlay input[type=text]").value;
+  var inputAchternaam = document.querySelector(".account-overlay input[type=text]").value;
+  var naamWeergeven = document.querySelector(".naam span");
 
-// function verdwijnFruitautomaat() {
-//   document.body.classList.add("verdwijn-fruitautomaat");
-// }
-
-// setTimeout("verdwijnFruitautomaat()", 3000);
+  var gewonnenOverlayNaam = document.querySelector(".gewonnen section span");
+  var vergoktOverlayNaam = document.querySelector(".vergokt section span");
 
 
-
-// function toonAccountContainer() {
-//   document.body.classList.add("toon-account-container");
-// }
-
-// setTimeout("toonAccountContainer()", 3500);
-
-
-
-
-// var popUp = document.querySelector(".account-overlay");
-// var doorgaanKnop = document.querySelector(".account-overlay button");
-
-// function sluitOverlay () {
-//   document.body.classList.add("sluit-overlay");
-// }
-// doorgaanKnop.addEventListener("click", sluitOverlay);
+  console.log(inputNaam);
+  naamWeergeven.innerHTML = inputNaam;
+  gewonnenOverlayNaam.innerHTML = inputNaam;
+  vergoktOverlayNaam.innerHTML = inputNaam;
+}
+accountAanmakenKnop.addEventListener("click", naamDoorgeven);

@@ -144,3 +144,174 @@ main section:nth-child(2) section:nth-child(2) section a {
     /* filter: grayscale(100%);
     opacity: 0.75; */
 }
+
+
+
+/* FRUIT2 UITPROBEREN */
+.fruit2 .kaarten-container ul li ul li {
+    animation-name: none;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 12px;
+}
+
+.fruit2 .kaarten-container ul li ul li:nth-child(1) {
+    transform: rotate(-0.5deg);
+}
+
+.fruit2 .kaarten-container ul li ul li:nth-child(2) {
+    transform: rotate(4deg);
+}
+
+.fruit2 .kaarten-container ul li ul li:nth-child(3) {
+    transform: rotate(2deg);
+}
+
+.gewonnen .kaarten-container ul li ul li,
+.verloren .kaarten-container ul li ul li {
+    animation-name: none;
+}
+
+
+
+
+
+/* -------------------------- 
+------ ACCOUNT OVERLAY ------
+-----------------------------*/
+
+.account-container {
+    /* display: none; */
+}
+
+.toon-account-container .account-container {
+    display: block;
+}
+
+.account-container {
+    background-color: rgba(0, 0, 0, 0.8);
+
+    height: 100vh;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    z-index: 20;
+
+    animation-name: container-animatie;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+.sluit-overlay .account-container {
+    display: none;
+}
+
+.account-overlay {
+    background-color: white;
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
+    margin: auto;
+
+    width: 44%;
+    height: 58%;
+
+    padding: 1em 3em;
+
+    border-radius: 0.5em;
+
+    z-index: 20;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+
+    box-shadow: 0 0 25px #fff
+}
+
+.account-overlay img:first-of-type {
+    height: 25%;
+}
+
+.account-overlay img:last-of-type {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    height: 65%;
+}
+
+.account-overlay form {
+    margin-top: 1em;
+}
+
+.account-overlay form label {
+    margin-bottom: 3em;
+}
+
+.account-overlay form a {
+    color: orange;
+}
+
+.account-overlay form input {
+    font-family: Arial, Helvetica, sans-serif;
+
+    border-radius: 0.5em;
+    border: 3px solid orange;
+    outline: none;
+
+    display: block;
+    margin: 0.25em 0 1.25em;
+
+    font-size: 20px;
+    /* color: white; */
+    /* background-color: plum; */
+
+    padding: 0.5em;
+}
+
+.account-overlay form input[type=checkbox] {
+    display: inline;
+    margin: 0;
+    margin-top: 0.5em;
+
+    cursor: pointer;
+}
+
+.account-overlay form label:last-of-type {
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.account-overlay button {
+    margin-top: 2em;
+    padding: 1em 2em;
+
+    font-weight: 600;
+    color: white;
+    font-size: 16px;
+
+    outline: none;
+    border-radius: 0.5em;
+    border: none;
+
+    background: rgb(184, 202, 182);
+    background: linear-gradient(180deg, rgba(184, 202, 182, 1) 0%, rgba(70, 131, 30, 1) 50%, rgba(126, 194, 5, 1) 100%);
+
+    filter: grayscale(100%);
+    cursor: auto;
+
+    transition: filter 1s;
+}
+
+.account-overlay button:hover {
+    filter: grayscale(0%);
+    cursor: pointer;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}

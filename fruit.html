@@ -9,7 +9,7 @@
     <title>Fruit</title>
 </head>
 
-<body class="ontvangen">
+<body class="testjoker tijdelijk">
 
     <!-- Naam -->
     <div class="naam">
@@ -19,19 +19,10 @@
     <main>
 
 
-        <section class="promo">
-
-        </section>
 
 
 
 
-        <!-- <section class="profiel-maken">
-            <form action="">
-                <label for="naam">Naam</label>
-                <input type="text">
-            </form>
-        </section> -->
 
         <!-- <section class="verberg-container">
             <button></button>
@@ -130,33 +121,97 @@
         </section> -->
 
 
+        <section class="promo">
+            <p>Welkom</p>
+            <p>Bonus</p>
+            <p>Gratis 100 tokens!</p>
+            <button>Nu claimen</button>
+        </section>
+
+
 
         <!---------------------------- 
         ------- ACCOUNT OVERLAY ------
         ----------------------------->
 
-        <!-- <section class="account-container">
+        <section class="account-container">
             <section class="account-overlay">
-                <img src="./images/casino-logo2.png" alt="">
-                <form action="">
 
-                    <label for="gebruiksnaam">Gebruiksnaam</label>
-                    <input type="text" name="gebruiksnaam">
+                <form onsubmit="return false;">
 
-                    <label for="email">Email</label>
-                    <input type="email" name="email">
+                    <h2>Account aanmaken</h2>
 
-                    <label for="tel-nr">Tel-nr.</label>
-                    <input type="tel" name="tel-nr">
+                    <label for="voornaam"></label>
+                    <input class="voornaam" type="text" name="voornaam" placeholder="Voornaam" required>
 
-                    <input type="checkbox" name="algemene-voorwaarde" value="18-jaar-of-ouder">
-                    <label for="algemene-voorwaarde">Ik ben 18 jaar of ouder en ga akkoord met de <a href="#">algemene
-                            voorwaarde</a></label>
+                    <label for="achternaam"></label>
+                    <input class="achternaam" type="text" name="achternaam" placeholder="Achternaam" required>
+
+                    <label for="email"></label>
+                    <input type="email" name="email" placeholder="Email" required>
+
+                    <label for="tel"></label>
+                    <input type="tel" name="tel" placeholder="Telefoon" required>
+
+
+                    <label for="datum"></label>
+                    <input id="geboorte-datum" type="date" name="datum" placeholder="2022-06-16" value="" required>
+
+                    <section>
+                        <label for="provincie"></label>
+                        <select name="provincie" id="provincie" required>
+                            <option value="">Provincie</option>
+                            <option value="1">Drenthe</option>
+                            <option value="2">Flevoland</option>
+                            <option value="3">Friesland</option>
+                            <option value="4">Gelderland</option>
+                            <option value="5">Groningen</option>
+                            <option value="6">Limburg</option>
+                            <option value="7">Noord-Brabant</option>
+                            <option value="8">Noord-Holland</option>
+                            <option value="9">Overijssel</option>
+                            <option value="10">Utrecht</option>
+                            <option value="11">Zeeland</option>
+                            <option value="12">Zuid-Holland</option>
+                        </select>
+                    </section>
+
+                    <section>
+                        <label for="stad"></label>
+                        <select name="stad" id="stad" required>
+                            <option value="">Stad</option>
+                            <option value="1">Amsterdam</option>
+                            <option value="2">Haarlem</option>
+                            <option value="3">Hilversum</option>
+                            <option value="4">Alkmaar</option>
+                            <option value="5">Amstelveen</option>
+                            <option value="6">Purmerend</option>
+                            <option value="7">Zaandam</option>
+                            <option value="8">Hoofddorp</option>
+                            <option value="9">Hoorn</option>
+                            <option value="10">Heerhugowaard</option>
+                        </select>
+                    </section>
+
+
+                    <!-- Checkbox -->
+                    <input id="checkbox-voorwaarde" type="checkbox" name="algemene-voorwaarde" value="18-jaar-of-ouder"
+                        required>
+                    <label for="algemene-voorwaarde">Ik heb de <a href="#">algemene voorwaarde</a> gelezen en ga hiermee
+                        akkoord </label>
+
+                    <button>Account aanmaken</button>
+
+                    <a href="">Ik heb al een account</a>
                 </form>
-                <img src="./images/dealer2.png" alt="">
-                <button>Doorgaan</button>
+
+                <section>
+                    <!-- <img src="./images/account-img2.png" alt=""> -->
+                    <img src="./images/bigbonus.png" alt="">
+                </section>
+
             </section>
-        </section> -->
+        </section>
 
 
 
@@ -173,34 +228,6 @@
 
                 <li>
                     <ul class="kaart-vak">
-                        <!-- <li>
-                            <header>
-                                <img src="" alt="">
-                                <span></span>
-                            </header>
-
-                            <img src="" alt="">
-                            <p></p>
-
-                            <footer>
-                                <img src="" alt="">
-                                <span></span>
-                            </footer>
-                        </li> -->
-                        <!-- <li>
-                            <header>
-                                <img src="" alt="">
-                                <span></span>
-                            </header>
-
-                            <img src="" alt="">
-                            <p></p>
-
-                            <footer>
-                                <img src="" alt="">
-                                <span></span>
-                            </footer>
-                        </li> -->
                     </ul>
 
                 </li>
@@ -249,14 +276,22 @@
 
         <section class="knoppen-container">
             <button>Oneens</button>
-            <button>$</button>
+            <button></button>
             <button>Eens</button>
         </section>
 
+        <section class="aantal-punten">
+            <span></span>
+        </section>
 
     </main>
 
-    <!-- Tijd -->
+
+
+    <!---------------------------- 
+    ----------- TIJD ----------
+    ----------------------------->
+
     <div class="tijd">
         <span></span>
     </div>

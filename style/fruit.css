@@ -18,6 +18,15 @@
     src: url('/fonts/Raleway-Regular.ttf') format("ttf");
 }
 
+@font-face {
+    font-family: "casino";
+    src: url('/fonts/CasinoFlat.ttf') format("ttf");
+}
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap');
+
+
+
 /* -------------------------- 
 --------- VARIABELE ---------
 -----------------------------*/
@@ -39,6 +48,7 @@
 /* -------------------------- 
 --------- ALGEMEEN ----------
 -----------------------------*/
+
 body {
     margin: 0;
 
@@ -111,10 +121,12 @@ p {
 
     /* display: none; */
     transition: 1s;
+
+    z-index: 999;
 }
 
 .verdwijn-fruitautomaat .fruitautomaat-container {
-    display: none;
+    /* display: none; */
 }
 
 
@@ -216,7 +228,13 @@ p {
 -----------------------------*/
 
 .promo {
-    background-color: rgba(0, 0, 0, 0.5);
+    /* background-color: rgba(0, 0, 0, 0.5); */
+    /* background-color: red; */
+    background-image: url("/images/promo-bg2-blur.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+
+
     height: 100vh;
 
     position: absolute;
@@ -225,16 +243,97 @@ p {
     left: 0;
     right: 0;
 
-    /* background-image: url("/images/promo1.jpg");
-    background-repeat: no-repeat;
-    background-size: cover; */
+    z-index: 150;
 
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
 
-    z-index: 100;
+    /* backdrop-filter: blur(15px); */
+    /* filter: blur(5px); */
 
-    display: none;
+    padding-top: 15em;
+
+    cursor: pointer;
 }
 
+.promo p {
+
+    /* position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%); */
+
+    /* margin-top: 0.25em; */
+    font-size: 250px;
+    align-self: center;
+    color: orange;
+    text-shadow: 5px 5px 0 darkorange, 8px 8px 0 darkorange, 11px 11px 0 darkorange, 0px 0px 50px orange;
+
+    display: block;
+}
+
+.promo p:nth-child(1) {
+    font-size: 42px;
+    text-shadow: 0px 0px 5px orange;
+}
+
+.promo p:nth-child(3) {
+    margin-top: 0.25em;
+    font-size: 100px;
+    text-shadow: 0px 0px 20px white;
+    color: white;
+}
+
+.promo button {
+    width: 25%;
+    margin: 2em auto 0;
+
+
+    font-family: stencil;
+    letter-spacing: 0.5em;
+
+    display: block;
+
+    padding: 2em;
+
+    /* font-weight: 600; */
+    color: white;
+    font-size: 24px;
+
+    outline: none;
+    border-radius: 0.5em;
+    border: none;
+
+    background: rgb(184, 202, 182);
+    background: linear-gradient(180deg, rgba(184, 202, 182, 1) 0%, rgba(70, 131, 30, 1) 50%, rgba(126, 194, 5, 1) 100%);
+    box-shadow: 0px 0px 20px 10px rgba(70, 131, 30, 1);
+
+    transition: filter 1s;
+    pointer-events: none;
+
+    animation-name: promoKnop;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+
+@keyframes promoKnop {
+    0% {
+        box-shadow: 0px 0px 20px 10px rgba(70, 131, 30, 1);
+    }
+
+    100% {
+        box-shadow: 0px 0px 20px 20px rgba(70, 131, 30, 1);
+    }
+}
+
+
+
+.weg-promo-overlay .promo {
+    display: none;
+}
 
 
 
@@ -245,16 +344,16 @@ p {
 ------ ACCOUNT OVERLAY ------
 -----------------------------*/
 
-.account-container {
+.weg-account-overlay .account-container {
     display: none;
 }
 
-.toon-account-container .account-container {
-    display: block;
-}
+
+
 
 .account-container {
-    background-color: rgba(0, 0, 0, 0.8);
+    /* background-color: rgba(0, 0, 0, 0.8); */
+    background-color: var(--kaarten-achtergrond);
 
     height: 100vh;
 
@@ -264,11 +363,13 @@ p {
     right: 0;
     bottom: 0;
 
-    z-index: 20;
+    z-index: 200;
 
-    animation-name: container-animatie;
+    /* animation-name: container-animatie;
     animation-duration: 2s;
-    animation-fill-mode: forwards;
+    animation-fill-mode: forwards; */
+
+    /* display: none; */
 }
 
 .sluit-overlay .account-container {
@@ -276,88 +377,218 @@ p {
 }
 
 .account-overlay {
-    background-color: white;
+    /* background-color: var(--kaarten-achtergrond); */
+    background-color: #00000080;
+
+    backdrop-filter: blur(15px);
+
+    color: white;
 
     position: absolute;
-
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
     margin: auto;
 
-    width: 44%;
     height: 58%;
+    aspect-ratio: 2/1;
 
-    padding: 1em 3em;
+    padding: 3em;
 
     border-radius: 0.5em;
 
     z-index: 20;
 
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: raleway;
     font-weight: 600;
 
-    box-shadow: 0 0 25px #fff
+    /* box-shadow: 0 0 100px rgba(255, 255, 255, 0.5); */
+    box-shadow: 0 0 100px orange;
+
+    /* background-image: url("/images/account-img2.png");
+    background-repeat: no-repeat;
+    background-position: 92% 100%;
+    background-size: 40%; */
 }
 
-.account-overlay img:first-of-type {
-    height: 25%;
+.account-overlay section {
+    position: relative;
 }
 
-.account-overlay img:last-of-type {
+.account-overlay section img {
     position: absolute;
-    bottom: 0;
-    right: 0;
+    right: 2em;
+    bottom: 8em;
+    /* transform: translateY(-50%); */
 
-    height: 65%;
+    width: 40%;
+
+    filter: drop-shadow(0px 0px 20px orange);
 }
 
+.account-container {
+    background-image: url("/images/bigprize4.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+.account-overlay h2 {
+    color: #EFD80D;
+    margin-bottom: 0.5em;
+    font-size: 54px;
+
+    font-family: stencil;
+    text-transform: uppercase;
+
+    /* text-shadow: 0 0 20px orange; */
+    text-shadow: 3px 3px 0 #A76005, 6px 6px 0 #A76005, 9px 9px 0 #A76005, 0 0 20px yellow;
+    /* -webkit-text-stroke: 2px darkorange; */
+    /* width and color */
+}
+
+
+
+/* FORM */
 .account-overlay form {
-    margin-top: 1em;
-}
-
-.account-overlay form label {
-    margin-bottom: 3em;
+    width: 50%;
 }
 
 .account-overlay form a {
+    font-weight: 600;
     color: orange;
+    font-size: 14px;
 }
 
-.account-overlay form input {
-    font-family: Arial, Helvetica, sans-serif;
+.account-overlay form>a {
+    font-weight: 600;
+    color: white;
+    font-size: 14px;
+}
+
+.account-overlay form>a {
+    font-weight: normal;
+    text-decoration: none;
+}
+
+/* .account-overlay form label {
+    margin-bottom: 3em;
+} */
+
+
+/* Input */
+.account-overlay form input,
+.account-overlay form select {
+    font-family: raleway;
+    color: white;
 
     border-radius: 0.5em;
-    border: 3px solid orange;
+    border: none;
     outline: none;
 
-    display: block;
-    margin: 0.25em 0 1.25em;
+    display: inline;
+    margin-bottom: 1.25em;
 
     font-size: 20px;
-    /* color: white; */
-    /* background-color: plum; */
+    font-weight: 600;
 
-    padding: 0.5em;
+    /* background-color: #474e72; */
+    background-color: #00000090;
+    /* box-shadow: 0 0 10px orange; */
+
+    padding: 1em;
+    margin: 1em 0;
+
+    width: calc(100% - 2em);
+    /* width: 100%; */
 }
 
+
+
+.account-overlay form input[type=text] {
+    width: calc(50% - 2.1em);
+}
+
+.account-overlay form input[type=email] {
+    width: calc(60% - 2.1em);
+}
+
+.account-overlay form input[type=tel] {
+    width: calc(40% - 2.1em);
+}
+
+.account-overlay form input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+
+
 .account-overlay form input[type=checkbox] {
+
+    width: auto;
+
     display: inline;
     margin: 0;
-    margin-top: 0.5em;
+    margin-top: 1em;
 
     cursor: pointer;
+
+    accent-color: orange;
+}
+
+
+.account-overlay form input[type=checkbox]~label {}
+
+
+.account-overlay form select {
+    width: calc(50% - 0.1em);
+}
+
+.account-overlay form section {
+    display: inline;
+    position: relative;
+}
+
+.account-overlay form section:before {
+    content: url("/images/arrow-down.svg");
+
+    color: white;
+    fill: white;
+
+    position: absolute;
+    top: 0;
+    right: 1em;
+}
+
+
+.account-overlay form section select {
+    appearance: none;
+}
+
+.account-overlay form input::placeholder {
+    color: white;
+    /* font-size: 14px; */
+    opacity: 0.5;
 }
 
 .account-overlay form label:last-of-type {
     font-size: 14px;
     font-weight: normal;
+    font-family: raleway;
 }
 
+
+
+
+/* Form knop */
 .account-overlay button {
-    margin-top: 2em;
+
+    font-family: raleway;
+
+    display: block;
+
+    margin: 1.5em 0 1em 0;
     padding: 1em 2em;
 
     font-weight: 600;
@@ -375,13 +606,16 @@ p {
     cursor: auto;
 
     transition: filter 1s;
+    pointer-events: none;
 }
 
-.account-overlay button:hover {
+.aangevinkt .account-overlay button {
     filter: grayscale(0%);
+    pointer-events: auto;
     cursor: pointer;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
+
+
 
 
 
@@ -389,6 +623,7 @@ p {
 ---------- KAARTEN ----------
 -----------------------------*/
 
+/* Kaart opmaak - container */
 .kaarten-container {
     height: 100vh;
 
@@ -413,7 +648,7 @@ p {
 }
 
 .kaarten-container>ul>li {
-    background-color: hsl(231, 33%, 24%);
+    background-color: #474e72;
 
     height: 34em;
     width: 22em;
@@ -427,12 +662,6 @@ p {
         inset #1b1f377e -2px -2px 10px 2px;
 }
 
-
-
-/* .kaarten-container ul li:nth-child(1) ul {
-    background-color: red;
-} */
-
 .kaarten-container ul li ul {
     height: 100%;
     width: 100%;
@@ -442,8 +671,9 @@ p {
 
 
 
+/* SLEEP CONTAINERS OPMAAK (NIEUWE ITERATIE) */
 
-/* NIEUWE ITERATIE */
+/* Oneens container */
 .kaarten-container>ul>li:nth-child(1) {
     background-color: var(--oneens-knop-kleur);
 
@@ -452,16 +682,6 @@ p {
 
     position: relative;
 }
-
-.kaarten-container>ul>li:nth-child(3) {
-    background-color: var(--eens-knop-kleur);
-
-    box-shadow: inset #32501c6e 5px 5px 10px 2px,
-        inset #32501c6e -2px -2px 10px 2px;
-
-    position: relative;
-}
-
 
 .kaarten-container>ul>li:nth-child(1) ul:empty:before {
     content: "Oneens";
@@ -478,6 +698,17 @@ p {
 }
 
 
+/* Eens container */
+.kaarten-container>ul>li:nth-child(3) {
+    background-color: var(--eens-knop-kleur);
+
+    box-shadow: inset #32501c6e 5px 5px 10px 2px,
+        inset #32501c6e -2px -2px 10px 2px;
+
+    position: relative;
+}
+
+/* Eens container */
 .kaarten-container>ul>li:nth-child(3) ul:empty:before {
     content: "Eens";
 
@@ -494,7 +725,11 @@ p {
 
 
 
+/* -------------------------- 
+------ KAART ELEMENTEN ------
+-----------------------------*/
 
+/* KAART ELEMENT - Container */
 .kaarten-container ul li ul li {
     align-self: center;
 
@@ -503,73 +738,89 @@ p {
     height: 100%;
     width: 100%;
 
-    /* padding: 3em; */
-
     display: flex;
 
     position: absolute;
     border-radius: 0.5em;
 
+    /* border: 5px solid white; */
+    box-shadow: inset 0 0 0 5px white;
+    /* border: 2px solid red; */
     text-align: center;
 
-    /* box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; */
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 
-    transform: translateY(-60em);
+    /* transform: translateY(0em) rotate(1deg); */
+
 }
 
-.ontvangen .kaarten-container ul li ul li {
-    animation-name: kaart-ontvangen;
-    animation-fill-mode: forwards;
-    animation-duration: 2s;
+.kaarten-container>ul>li:nth-child(2) {
+    position: relative;
 }
 
+/* .kaarten-container>ul>li:nth-child(2):before {
+    content: "hoi";
+    position: absolute;
+} */
 
 
-/* FRUIT2 UITPROBEREN */
-.fruit2 .kaarten-container ul li ul li {
-    animation-name: none;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 12px;
-}
-
-.fruit2 .kaarten-container ul li ul li:nth-child(1) {
-    transform: rotate(-0.5deg);
-}
-
-.fruit2 .kaarten-container ul li ul li:nth-child(2) {
-    transform: rotate(4deg);
-}
-
-.fruit2 .kaarten-container ul li ul li:nth-child(3) {
-    transform: rotate(2deg);
-}
-
-
-
-.gewonnen .kaarten-container ul li ul li,
-.verloren .kaarten-container ul li ul li {
-    animation-name: none;
-}
-
-
-/* .kaarten-container ul li ul li:after {
-
-    content: "";
-
-    background-color: red;
-
-    height: 100%;
-    width: 50%;
+/* HINT */
+/* .kaarten-container>ul>li:nth-child(2):before {
+    content: "Sleep de kaarten";
 
     position: absolute;
-    border-radius: 0.5em;
+    top: -3em;
+    left: 0;
+    right: 0;
+    text-align: center;
 
-    z-index: -1;
+    color: white
+} */
+
+/* NOG EEN HINT */
+/* .kaarten-container>ul>li:nth-child(1) {
+    border: 8px dashed white;
+    border-image-width: 1;
+    border-image-slice: 5;
 } */
 
 
 
 
 
+
+.kaarten-container ul li ul li {
+    /* animation-name: kaart-ontvangen;
+    animation-fill-mode: forwards !important; */
+    /* transform: translateY(-60em); */
+    /* transform: rotate(var(--willekeurige-rotatie)); */
+}
+
+/* .tijdelijk .kaarten-container ul li ul li {
+    animation-name: none;
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+/* Kaart animatie */
+.kaarten-container ul li ul li {
+    /* animation-name: kaart-ontvangen;
+    animation-fill-mode: forwards;
+    animation-duration: 1.5s; */
+}
+
+
+
+/* KAART ELEMENT - Middenstuk */
 .kaarten-container ul li p {
     align-self: center;
     line-height: 1.5em;
@@ -582,13 +833,7 @@ p {
     z-index: 40;
 }
 
-
-.kaarten-container ul li img {
-    height: 2em;
-
-    /* fill: red; */
-}
-
+/* Kaart bg */
 .kaarten-container ul li img:nth-child(2) {
     position: absolute;
     top: 50%;
@@ -602,6 +847,8 @@ p {
 }
 
 
+
+/* KAART ELEMENT - Header */
 .kaarten-container ul li header {
     position: absolute;
     top: 0;
@@ -613,6 +860,9 @@ p {
     padding: 2em;
 }
 
+
+
+/* KAART ELEMENT - Footer */
 .kaarten-container ul li footer {
     position: absolute;
     bottom: 0;
@@ -626,36 +876,116 @@ p {
     transform: rotate(180deg);
 }
 
+
+
+/* KAART ELEMENT - ALGEMEEN */
+.kaarten-container ul li img {
+    height: 2em;
+}
+
 .kaarten-container ul li span {
-    color: red;
     font-size: 18px;
 
     font-weight: 600;
 }
 
 
-/* Wanneer er joker wordt getrokken */
-.joker .kaarten-container ul li ul li {
-    background-color: white;
-    box-shadow: 0 0 1em orange;
-    /* color: white; */
+
+/* -------------------------- 
+---- KAART UITZONDERINGEN ---
+-----------------------------*/
+
+/* Rode kaart */
+.rodekaart span {
+    color: red;
+}
+
+.rodekaart {}
+
+/* Zwarte kaart */
+.zwartekaart span {
+    color: black;
+}
+
+.zwartekaart {}
+
+/* Joker kaart */
+.jokerkaart {
+    /* border: 5px solid orange !important; */
+    box-shadow: inset 0 0 0 5px orange !important;
     font-weight: 600;
     font-family: stencil;
 }
 
-/* .joker .kaarten-container ul li ul li header span,
+.jokerkaart span {
+    color: orange;
+}
+
+.jokerkaart img:nth-child(2) {
+    opacity: 0.15 !important;
+}
+
+/* Styling wanneer joker wordt getrokken */
+.joker-getrokken .kaarten-container {
+    /* animation-name: joker-animatie-body;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: ease-in-out; */
+}
+
+.joker-getrokken .kaarten-container>ul>li:nth-child(2) {
+    /* background-color: orange; */
+}
+
+.joker-getrokken .kaarten-container>ul>li:nth-child(3) {
+    animation-name: joker-animatie-container;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: ease-in-out;
+}
+
+.joker-getrokken .kaarten-container>ul>li:nth-child(1) {
+    /* filter: grayscale(100%); */
+
+    transition: opacity 1s;
+
+    opacity: 0.15;
+}
+
+.joker-getrokken .jokerkaart {
+    /* animation-name: joker-animatie-kaart;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: ease-in-out; */
+    background-color: #FFFAF2;
+}
+
+.joker-getrokken .kaarten-container>ul>li:nth-child(2) {
+    /* box-shadow: 0 0 15px 15px orange; */
+    /* padding: 3em; */
+}
+
+.joker-getrokken .aantal-punten {
+    background-color: orange;
+    box-shadow: 0 0 1em orange;
+    color: white;
+}
+
+
+/* NIEUWE IMG BIJ JOKER */
+
+.joker .kaarten-container ul li ul li header span,
 .joker .kaarten-container ul li ul li footer span {
     font-size: 22px;
     font-weight: 600;
-} */
+}
 
-/* .joker .kaarten-container ul li ul li header img,
-.joker .kaarten-container ul li ul li footer img {
-    height: 7.5em;
-} */
-
-.joker .kaarten-container ul li ul li img:nth-child(2) {
-    opacity: 0.15;
+.jokerkaart header img,
+.jokerkaart footer img {
+    height: 7.5em !important;
 }
 
 
@@ -686,13 +1016,11 @@ p {
     justify-content: center;
     gap: 1em;
 
-    /* box-shadow: inset 0 0 0.25em #ffffff50; */
+    display: none;
 }
 
 .knoppen-container button {
     cursor: pointer;
-
-    /* padding: 1.25em; */
 
     border-radius: 0 3.2em 3.2em 0;
 
@@ -734,7 +1062,6 @@ p {
 .knoppen-container button:nth-child(2):before {
     content: url("/images/chips.svg");
 
-    /* height: 0.5em; */
     width: 1.25em;
     left: 2em;
 
@@ -745,7 +1072,6 @@ p {
     opacity: 1;
 }
 
-/* Wanneer joker getrokken wordt */
 .joker .knoppen-container button,
 .joker .knoppen-container button:nth-child(1),
 .joker .knoppen-container button:nth-child(2) {
@@ -760,8 +1086,47 @@ p {
 
 
 
+/* NIEUW - PUNTEN CONTAINER */
+.aantal-punten {
+    text-align: center;
+    padding: 1.5em 0;
 
-.wijziging-container {
+    border-radius: 0.5em;
+
+    position: absolute;
+
+    bottom: 5em;
+    right: 0;
+    left: 0;
+
+    margin: 0 auto;
+
+    width: 22em;
+
+    background-color: white;
+    box-shadow: 0 0 1em white;
+}
+
+.aantal-punten span {
+    font-size: 44px;
+}
+
+.aantal-punten span::before {
+    content: url("/images/chips.svg");
+
+    width: 1em;
+    left: 1em;
+
+    margin-top: 0.1em;
+
+    position: absolute;
+}
+
+
+
+
+/* WEERGAVE - PUNTEN DOORVOEREN */
+/* .wijziging-container {
 
     font-family: raleway;
 
@@ -776,10 +1141,39 @@ p {
     text-align: center;
 
     z-index: 10;
+} */
+
+/* Nieuw - wijziging-container */
+.wijziging-container {
+
+    font-family: raleway;
+
+    color: #FECA3F;
+    font-weight: 600;
+
+    position: absolute;
+    bottom: 12em;
+    left: 0;
+    right: 0;
+
+    text-align: center;
+
+    z-index: 10;
+}
+
+.wijziging-container span {
+
+    font-family: stencil;
+
+    font-size: 22px;
+
 }
 
 
 
+/* -------------------------- 
+---------- SLEPEN -----------
+-----------------------------*/
 
 /* SLEPEN */
 .sortable-ghost {
@@ -788,16 +1182,13 @@ p {
 
 
 
-
-
-
 /* -------------------------- 
 -------- AFGELOPEN ----------
 -----------------------------*/
 
 /* Algeme stijling voor beide */
-main section:nth-child(3),
-main section:nth-child(4) {
+main section:nth-child(4),
+main section:nth-child(5) {
 
     font-family: raleway;
 
@@ -810,15 +1201,15 @@ main section:nth-child(4) {
 }
 
 /* Algeme stijling voor beide */
-main section:nth-child(3),
-main section:nth-child(3) section,
 main section:nth-child(4),
-main section:nth-child(4) section {
+main section:nth-child(4) section,
+main section:nth-child(5),
+main section:nth-child(5) section {
     display: none;
 }
 
-main section:nth-child(3),
-main section:nth-child(4) {
+main section:nth-child(4),
+main section:nth-child(5) {
     /* background-color: rgba(255, 255, 255, 0.25); */
     background-color: rgba(0, 0, 0, 0.6);
     height: 100vh;
@@ -830,8 +1221,8 @@ main section:nth-child(4) {
     animation-duration: 1.5s;
 }
 
-main section:nth-child(3) section,
-main section:nth-child(4) section {
+main section:nth-child(4) section,
+main section:nth-child(5) section {
     background-color: white;
     height: 50%;
     width: 50%;
@@ -852,8 +1243,8 @@ main section:nth-child(4) section {
     animation-fill-mode: forwards;
 }
 
-main section:nth-child(3) section p,
-main section:nth-child(4) section p {
+main section:nth-child(4) section p,
+main section:nth-child(5) section p {
     text-align: center;
 
     width: 70%;
@@ -865,8 +1256,8 @@ main section:nth-child(4) section p {
     text-transform: uppercase;
 }
 
-main section:nth-child(3) section a,
-main section:nth-child(4) section a {
+main section:nth-child(4) section a,
+main section:nth-child(5) section a {
 
     position: absolute;
     bottom: calc(4em - 2.25em);
@@ -891,31 +1282,31 @@ main section:nth-child(4) section a {
     border-radius: 0.5em;
 }
 
-main section:nth-child(3) section span,
-main section:nth-child(4) section span {
+main section:nth-child(4) section span,
+main section:nth-child(5) section span {
     color: orange;
 }
 
-main section:nth-child(3) section p:nth-child(3),
-main section:nth-child(4) section p:nth-child(3) {
+main section:nth-child(4) section p:nth-child(3),
+main section:nth-child(5) section p:nth-child(3) {
     font-size: 24px;
     text-transform: unset;
 
     opacity: 0.25;
 }
 
-/* afgelopen */
-.gewonnen main section:nth-child(3),
-.gewonnen main section:nth-child(3) section,
-.vergokt main section:nth-child(4),
-.vergokt main section:nth-child(4) section {
+/* Afgelopen - laten zien */
+.gewonnen main section:nth-child(4),
+.gewonnen main section:nth-child(4) section,
+.vergokt main section:nth-child(5),
+.vergokt main section:nth-child(5) section {
     display: block;
 }
 
 
 
 /* Stijling voor gewonnen */
-main section:nth-child(3) section:before {
+main section:nth-child(4) section:before {
     content: url("/images/confetti-7.gif");
     position: absolute;
 
@@ -928,11 +1319,11 @@ main section:nth-child(3) section:before {
     opacity: 0.75;
 }
 
-main section:nth-child(3) section span:nth-child(2) {
+main section:nth-child(4) section span:nth-child(2) {
     margin-left: 1em;
 }
 
-main section:nth-child(3) section span:nth-child(2):before {
+main section:nth-child(4) section span:nth-child(2):before {
     content: url("/images/chips.svg");
 
     width: 0.75em;
@@ -946,7 +1337,7 @@ main section:nth-child(3) section span:nth-child(2):before {
 
 
 /* Stijling voor vergokt */
-main section:nth-child(4) section a {
+main section:nth-child(5) section a {
 
     /* filter: grayscale(100%);
     opacity: 0.75; */
@@ -955,7 +1346,7 @@ main section:nth-child(4) section a {
 
 
 /* -------------------------- 
------------- NAAM & TIJD -----------
+------- NAAM & TIJD ---------
 -----------------------------*/
 
 body div {
@@ -1013,10 +1404,12 @@ body div p {
 @keyframes kaart-ontvangen {
     0% {
         transform: translateY(-60em) rotate(0);
+        /* transform: translateY(-60em); */
     }
 
     100% {
-        transform: translateY(0) rotate(var(--random-deg));
+        transform: translateY(0em) rotate(var(--willekeurige-rotatie));
+        /* transform: translateY(0em); */
     }
 }
 
@@ -1040,6 +1433,62 @@ body div p {
     }
 }
 
+/* @keyframes joker-animatie-body {
+    0% {
+        box-shadow: inset 0 0 2em 2em rgba(255, 166, 0, 1);
+    }
+
+    100% {
+        box-shadow: inset 0 0 4em 4em rgba(255, 166, 0, 0.75);
+    }
+} */
+
+
+
+@keyframes joker-animatie-body {
+    0% {
+        box-shadow: inset 0 0 2em 2em rgba(255, 166, 0, 1);
+    }
+
+    100% {
+        box-shadow: inset 0 0 4em 4em rgba(255, 166, 0, 0.75);
+    }
+}
+
+
+
+@keyframes joker-animatie-container {
+    0% {
+        /* box-shadow: 0 0 1em 1em rgba(255, 255, 255, 0.5); */
+        box-shadow: 0 0 1em 1em var(--eens-knop-kleur);
+        /* box-shadow: 0 0 2em 2em orange; */
+    }
+
+    100% {
+        /* box-shadow: 0 0 2em 2em rgba(255, 255, 255, 0.5); */
+        box-shadow: 0 0 2em 2em var(--eens-knop-kleur);
+        /* box-shadow: 0 0 2em 2em orange; */
+    }
+}
+
+
+
+@keyframes joker-animatie-kaart {
+    0% {
+        box-shadow: 0 0 0.5em orange;
+    }
+
+    100% {
+        box-shadow: 0 0 1em orange;
+    }
+}
+
+
+
+
+/* -------------------------- 
+------- BREAK POINTS --------
+-----------------------------*/
 
 @media screen and (max-width: 480px) {
 
@@ -1067,4 +1516,85 @@ body div p {
         top: 3em;
         bottom: auto;
     }
+}
+
+
+
+
+
+
+
+
+/* -------------------------- 
+------ KAART ROTATIES ------
+-----------------------------*/
+
+.kaarten-container ul li ul li:nth-child(12) {
+    animation-delay: 2.4s !important;
+    /* animation-fill-mode: forwards !important; */
+}
+
+.kaarten-container ul li ul li:nth-child(11) {
+    animation-delay: 2.2s !important;
+    /* animation-fill-mode: forwards !important; */
+
+}
+
+.kaarten-container ul li ul li:nth-child(10) {
+    animation-delay: 2s !important;
+    /* animation-fill-mode: forwards !important; */
+
+}
+
+.kaarten-container ul li ul li:nth-child(9) {
+    animation-delay: 1.8s !important;
+    /* animation-fill-mode: forwards !important; */
+
+}
+
+.kaarten-container ul li ul li:nth-child(8) {
+    animation-delay: 1.6s !important;
+    /* animation-fill-mode: forwards !important; */
+
+}
+
+.kaarten-container ul li ul li:nth-child(7) {
+    animation-delay: 1.4s !important;
+    /* animation-fill-mode: forwards !important; */
+
+}
+
+.kaarten-container ul li ul li:nth-child(6) {
+    animation-delay: 1.2s !important;
+    /* animation-fill-mode: forwards !important; */
+
+}
+
+.kaarten-container ul li ul li:nth-child(5) {
+    animation-delay: 1s !important;
+    /* animation-fill-mode: forwards !important; */
+
+}
+
+.kaarten-container ul li ul li:nth-child(4) {
+    animation-delay: 0.8s !important;
+    /* animation-fill-mode: forwards !important; */
+
+}
+
+.kaarten-container ul li ul li:nth-child(3) {
+    animation-delay: 0.6s !important;
+    /* animation-fill-mode: forwards !important; */
+
+}
+
+.kaarten-container ul li ul li:nth-child(2) {
+    animation-delay: 0.4s !important;
+    /* animation-fill-mode: forwards !important; */
+
+}
+
+.kaarten-container ul li ul li:nth-child(1) {
+    animation-delay: 0.2s !important;
+    /* animation-fill-mode: forwards !important; */
 }
