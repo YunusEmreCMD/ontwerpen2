@@ -4,23 +4,23 @@
 
 @font-face {
     font-family: "stencil";
-    src: url("./fonts/StardosStencil-Bold.ttf") format("ttf"),
-        url("./fonts/StardosStencil-Regular.ttf") format("ttf");
+    src: url("../fonts/StardosStencil-Bold.ttf") format("ttf"),
+        url("../fonts/StardosStencil-Regular.ttf") format("ttf");
 }
 
 @font-face {
     font-family: "comfort";
-    src: url("./fonts/Comfortaa-VariableFont_wght.ttf") format("ttf");
+    src: url("../fonts/Comfortaa-VariableFont_wght.ttf") format("ttf");
 }
 
 @font-face {
     font-family: "raleway";
-    src: url('./fonts/Raleway-Regular.ttf') format("ttf");
+    src: url('../fonts/Raleway-Regular.ttf') format("ttf");
 }
 
 @font-face {
     font-family: "casino";
-    src: url('./fonts/CasinoFlat.ttf') format("ttf");
+    src: url('../fonts/CasinoFlat.ttf') format("ttf");
 }
 
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap');
