@@ -4,23 +4,23 @@
 
 @font-face {
     font-family: "stencil";
-    src: url("/fonts/StardosStencil-Bold.ttf") format("ttf"),
-        url("/fonts/StardosStencil-Regular.ttf") format("ttf");
+    src: url("../fonts/StardosStencil-Bold.ttf") format("ttf"),
+        url("../fonts/StardosStencil-Regular.ttf") format("ttf");
 }
 
 @font-face {
     font-family: "comfort";
-    src: url("/fonts/Comfortaa-VariableFont_wght.ttf") format("ttf");
+    src: url("../fonts/Comfortaa-VariableFont_wght.ttf") format("ttf");
 }
 
 @font-face {
     font-family: "raleway";
-    src: url('/fonts/Raleway-Regular.ttf') format("ttf");
+    src: url('../fonts/Raleway-Regular.ttf') format("ttf");
 }
 
 @font-face {
     font-family: "casino";
-    src: url('/fonts/CasinoFlat.ttf') format("ttf");
+    src: url('../fonts/CasinoFlat.ttf') format("ttf");
 }
 
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap');
@@ -230,7 +230,7 @@ p {
 .promo {
     /* background-color: rgba(0, 0, 0, 0.5); */
     /* background-color: red; */
-    background-image: url("/images/promo-bg2-blur.png");
+    background-image: url("../images/promo-bg2-blur.png");
     background-repeat: no-repeat;
     background-size: cover;
 
@@ -428,7 +428,7 @@ p {
 }
 
 .account-container {
-    background-image: url("/images/bigprize4.jpg");
+    background-image: url("../images/bigprize4.jpg");
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -551,7 +551,7 @@ p {
 }
 
 .account-overlay form section:before {
-    content: url("/images/arrow-down.svg");
+    content: url("../images/arrow-down.svg");
 
     color: white;
     fill: white;
@@ -1112,7 +1112,7 @@ p {
 }
 
 .aantal-punten span::before {
-    content: url("/images/chips.svg");
+    content: url("../images/chips.svg");
 
     width: 1em;
     left: 1em;
@@ -1307,7 +1307,7 @@ main section:nth-child(5) section p:nth-child(3) {
 
 /* Stijling voor gewonnen */
 main section:nth-child(4) section:before {
-    content: url("/images/confetti-7.gif");
+    content: url("../images/confetti-7.gif");
     position: absolute;
 
     top: 50%;
